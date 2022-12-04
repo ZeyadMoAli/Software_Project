@@ -1,7 +1,10 @@
 import java.util.Scanner;
 
-public class Fawry {
+public class Fawry { //boundery class
 	UserManager user_manager;
+	int customer_admin;
+	UserView userView;
+	
 	int FormAdminOrUser() {
 		int choice = -1;
 		while(choice == -1) {
@@ -33,15 +36,23 @@ public class Fawry {
 		}
 		return choice; 
 	}
-	void run() {
-		int choice = FormAdminOrUser();
-		if (choice==1)
-			user_manager = new AdminManager();
-		else 
-			user_manager = new CustomerManager();
-		choice = FormEntering();
-		user_manager.LoadDataBase();
-		user_manager.AccessToFawry(choice);
+	void run() {		
+		while (true) {
+			customer_admin = FormAdminOrUser();
+			if (customer_admin==1)
+				user_manager = new AdminManager();
+			else 
+				user_manager = new CustomerManager();
+			int choice = FormEntering();
+			user_manager.LoadDataBase();
+			user_manager.AccessToFawry(choice);
+			if (customer_admin==2) {
+				userView = new CustomerView();
+				userView.Run();
+			}
+				
+				
+		}
 	
 	}
 }

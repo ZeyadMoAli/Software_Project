@@ -32,6 +32,11 @@ public abstract class UserManager  {
         return username;
     }
     String EnterUserNameInLogIn() {
+
+   /*   for (Entry<String, User> entry : mp_username_to_user_object.entrySet()){
+    	    	  System.out.print( entry.getValue().GetUsername());
+      }*/
+
     	String username;
         Scanner in = new Scanner(System.in);
         while(true) {
@@ -44,10 +49,10 @@ public abstract class UserManager  {
         }       
         return username;
     }
-  boolean SearchForEmail(String email) {
+  boolean IsNewEmail(String email) {
       for (Entry<String, User> entry : mp_username_to_user_object.entrySet()){
     	  String another_user_email=entry.getValue().GetEmail();
-          if (!another_user_email.equals(email) )
+          if (another_user_email.equals(email) )
         	  return false;
       }
       return true;
@@ -60,7 +65,7 @@ public abstract class UserManager  {
         while(true) {
         	System.out.print("enter Email: ");
         	email = in.nextLine();
-        	if(SearchForEmail(email))
+        	if(IsNewEmail(email))
         		break;
         	else 
         		System.out.println("User already Has such email Try again");   			        		
@@ -88,7 +93,7 @@ public abstract class UserManager  {
         String password;
         String username = EnterUserNameInSignUp();
         String email=EnterEmail();
-    	System.out.print("enter your username: ");
+    	System.out.print("enter your password: ");
     	password = in.nextLine();
     	CreateNewUser(username, email, password);
 
