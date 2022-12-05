@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TransactionDataManager implements IdataManger {
     ArrayList<Transaction> itransactions = new ArrayList<Transaction>();
@@ -36,14 +37,18 @@ public class TransactionDataManager implements IdataManger {
 
     }
 
-    public void displayTransactions(){
+    public void hadleRefund(){
 
         System.out.println("Transaction ID ,  Username   ");
+        boolean state=false;
+        Scanner scn = new Scanner(System.in);
 
-
-        for (Transaction transaction : itransactions){
-
-            System.out.println( transaction.GetTransactionId()+ " " + transaction.Getcustomer().GetUsername()+ " "  );
+        for (Transaction transaction : Refund){
+            System.out.println("Transaction ID: "+  transaction.GetTransactionId() );
+            System.out.println("Username: "+ transaction.Getcustomer().GetUsername());
+            System.out.println("Enter State: ");
+            state=scn.nextBoolean();
+            transaction.seTrefundStatus(state);
 
         }
     }

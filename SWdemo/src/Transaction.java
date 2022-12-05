@@ -10,29 +10,18 @@ public class Transaction implements Itransaction{
     public IserviceProvider iserviceProvider;
     public  PaymentForm paymentForm;
 
-    private boolean is_refund = false;
-    private boolean refund_successful = false;
 
-    private boolean is_Refunded = false;
-
-
-
+    public boolean refundStates = false;
 
 
     @Override
-    public void setIsRefunded(boolean status){
-
-        this.is_Refunded = status;
-
+    public void seTrefundStatus(Boolean state) {
+        this.refundStates=state;
     }
 
-
-
     @Override
-    public void setIsRefund(boolean status){
-
-        this.is_refund = status;
-
+    public boolean GetRefundStatus() {
+        return refundStates;
     }
 
     @Override
@@ -41,20 +30,8 @@ public class Transaction implements Itransaction{
     }
 
 
-    @Override
-    public boolean getIsRefunded(){
-
-        return is_Refunded;
-
-    }
 
 
-    @Override
-    public boolean getIsRefund(){
-
-        return is_refund;
-
-    }
 
     @Override
     public Customer Getcustomer() {
@@ -99,15 +76,7 @@ public class Transaction implements Itransaction{
     }
 
 
-    public boolean getRefundSuccessful(){
 
-        return refund_successful;
-    }
-    public void setRefundSuccessful(boolean status){
-
-        this.refund_successful = status ;
-
-    }
     Transaction(Customer c, Iservice is, IserviceProvider isp, PaymentForm pf)
     {
         customer=c;

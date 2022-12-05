@@ -2,13 +2,10 @@ public interface Itransaction {
 
 
 
-    public void setIsRefunded(boolean status);
-    public void setIsRefund(boolean status);
+    void seTrefundStatus(Boolean state);
+    boolean GetRefundStatus();
     public int GetTransactionId();
 
-    public boolean getIsRefunded();
-
-    public boolean getIsRefund();
 
     public Customer Getcustomer();
     public  void SetCustomer(Customer customer);

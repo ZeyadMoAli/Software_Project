@@ -8,6 +8,11 @@ class Admin implements IUser {
         SetEmail(email);
         SetPassword(password);
     }
+    void HandleRefund(TransactionDataManager transactionDataManager)
+    {
+        transactionDataManager.hadleRefund();
+
+    }
     public void MakeOverAllDiscount( double discountAmount ,OverAllDiscount overAllDiscount)
     {
         overAllDiscount.setDiscountAmount(discountAmount);
@@ -18,6 +23,7 @@ class Admin implements IUser {
         specificDiscount.setDiscountAmount(discountAmount, iservice);
 
     }
+
 
     @Override
     public String GetUsername() {
