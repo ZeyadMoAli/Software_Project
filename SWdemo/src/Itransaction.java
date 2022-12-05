@@ -7,11 +7,12 @@ public interface Itransaction {
     public void setAmount();
     public void setIsRefunded(boolean status);
     public void setIsRefund(boolean status);
+    public void setRefundSuccessful(boolean status);
     public String getTransactionID();
     public String getTransactionUser();
     public double getAmount();
     public boolean getIsRefunded();
+    public boolean getRefundSuccessful();
 
-    public boolean getIsRefund();
 
 }

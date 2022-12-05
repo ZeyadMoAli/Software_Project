@@ -2,6 +2,10 @@ class Admin implements IUser {
     private String username;
     private String email;
     private String password;
+
+
+    TransactionDataManager transactionDataManager = new TransactionDataManager();
+
     Admin(){};
     Admin(String username,String email,String password){
         SetUsername(username);
@@ -18,6 +22,33 @@ class Admin implements IUser {
         specificDiscount.setDiscountAmount(discountAmount, iservice);
 
     }
+
+
+
+
+
+    public void refundTransaction(Transaction transaction){
+
+        if (transactionDataManager.transactionSearch(transaction) != null) {
+
+
+            transaction.setRefundSuccessful(true);
+
+
+        } else {
+
+            System.out.println("Transaction not found.");
+        }
+
+
+
+
+
+
+
+
+    }
+
 
     @Override
     public String GetUsername() {

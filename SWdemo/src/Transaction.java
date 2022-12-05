@@ -11,9 +11,10 @@ public class Transaction implements Itransaction{
 
     private String paymentMethod;
 
-    private boolean is_refund = false;
-
     private boolean is_Refunded = false;
+
+
+    private boolean refund_successful = false;
 
     @Override
     public void setTransactionID(){
@@ -55,12 +56,16 @@ public class Transaction implements Itransaction{
     }
 
 
-    @Override
-   public void setIsRefund(boolean status){
 
-        this.is_refund = status;
+
+    public void setRefundSuccessful(boolean status){
+
+        this.refund_successful = status ;
 
     }
+
+
+
 
 
 
@@ -97,12 +102,13 @@ public class Transaction implements Itransaction{
     }
 
 
+    public boolean getRefundSuccessful(){
 
-    @Override
-   public boolean getIsRefund(){
-
-        return is_refund;
-
+        return refund_successful;
     }
+
+
+
+
 
 }
