@@ -1,7 +1,6 @@
 public interface Iform {
-    void setPhoneNum();
-    int getPhoneNum();
-   int GetPhoneNum() ;
+    void setPhoneNum(int phonenum);
+    int GetPhoneNum() ;
     void SetName(String Name) ;
     String GetName() ;
 

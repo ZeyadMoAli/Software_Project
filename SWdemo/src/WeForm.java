@@ -15,9 +15,10 @@ public class WeForm implements Iform {
     }
 
     @Override
-    public int getPhoneNum() {
+    public int GetPhoneNum() {
         return phonenum;
     }
+
 
     @Override
     public void SetName(String name) {
