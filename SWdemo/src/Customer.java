@@ -3,11 +3,17 @@ class Customer implements IUser {
     private String email;
     private String password;
     private int discount_amount=0;
+    private CraditCard craditCard= new CraditCard();
+    private Wallet wallet = new Wallet();
     Customer(){}
     Customer(String username,String email,String password){
         SetUsername(username);
         SetEmail(email);
         SetPassword(password);
+    }
+    void AddToWallet(int balance)
+    {
+        wallet.AddBalance(craditCard,balance);
     }
     void upDateDiscount(int amount)
     {
