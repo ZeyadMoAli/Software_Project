@@ -1,8 +1,11 @@
+import java.time.temporal.Temporal;
+import java.util.Scanner;
+
 class Customer implements IUser {
     private String username;
     private String email;
     private String password;
-    private int discount_amount = 0;
+    private double discount_amount = 0;
     private CraditCard craditCard = new CraditCard();
     private Wallet wallet = new Wallet();
 
@@ -19,19 +22,9 @@ class Customer implements IUser {
         wallet.AddBalance(craditCard, balance);
     }
 
-    void upDateDiscount(int amount) {
+    void upDateDiscount(double amount) {
         this.discount_amount = amount;
     }
-
-    void apply_discount() {
-        if (this.discount_amount == 0)
-            System.out.println("You have No discount on this service");
-        else {
-
-            System.out.println("You have " + discount_amount + "% discount on this service");
-        }
-    }
-
     void Register(CustomerDataManager customerDataManager) {
         customerDataManager.addCustomer(this);
     }
@@ -42,6 +35,44 @@ class Customer implements IUser {
         }
         return false;
 
+    }
+    Iservice Search(String s, ServiceDataManger serviceDataManger)
+    {
+        return serviceDataManger.Search(s);
+    }
+    public double Getdiscount()
+    {
+        return this.discount_amount;
+    }
+
+    public  void Pay(double amount, IserviceProvider iserviceProvider)
+    {
+        String  s;
+        Scanner scn=new Scanner(System.in);
+        if (iserviceProvider.CashState())
+        {
+            System.out.println("Enter Payment option (Credit, Wallet ,Cash)");
+            s = scn.nextLine();
+            if(s.equals("Credit"))
+            {
+                craditCard.pay(amount);
+            }else if(s.equals("Wallet"))
+            {
+                wallet.pay(amount);
+            }
+        }
+        else {
+            System.out.println("Enter Payment option (Credit, Wallet)");
+            s = scn.nextLine();
+            if(s.equals("Credit"))
+            {
+                craditCard.pay(amount);
+            }else if(s.equals("Wallet"))
+            {
+                wallet.pay(amount);
+            }
+
+        }
     }
 
     @Override
@@ -74,20 +105,20 @@ class Customer implements IUser {
         password = Password;
     }
 
-    public void refund(Transaction transaction) {
+    public Boolean refund(int id, TransactionDataManager transactionDataManager) {
+        Transaction transaction= transactionDataManager.transactionSearch(id);
 
-        TransactionDataManager transactionDataManager = new TransactionDataManager();
+        if(transaction==null)
+            return false;
+        return true;
+    }
 
-
-        if (transactionDataManager.transactionSearch(transaction) != null) {
-
-
-            transaction.setIsRefunded(true);
-
-
-        } else {
-
-            System.out.println("Transaction not found.");
-        }
+    double GetWalletBalance()
+    {
+        return wallet.balance;
+    }
+    double GetCreditBalance()
+    {
+        return craditCard.GetBalance();
     }
 }

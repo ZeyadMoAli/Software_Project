@@ -2,53 +2,22 @@ class Admin implements IUser {
     private String username;
     private String email;
     private String password;
-
-
-    TransactionDataManager transactionDataManager = new TransactionDataManager();
-
     Admin(){};
     Admin(String username,String email,String password){
         SetUsername(username);
         SetEmail(email);
         SetPassword(password);
     }
-    public void MakeOverAllDiscount( int discountAmount ,OverAllDiscount overAllDiscount)
+    public void MakeOverAllDiscount( double discountAmount ,OverAllDiscount overAllDiscount)
     {
         overAllDiscount.setDiscountAmount(discountAmount);
 
     }
-    public void MakeSpecificDiscount( int discountAmount, Iservice iservice ,SpecificDiscount specificDiscount)
+    public void MakeSpecificDiscount( double discountAmount, Iservice iservice ,SpecificDiscount specificDiscount)
     {
         specificDiscount.setDiscountAmount(discountAmount, iservice);
 
     }
-
-
-
-
-
-    public void refundTransaction(Transaction transaction){
-
-        if (transactionDataManager.transactionSearch(transaction) != null) {
-
-
-            transaction.setRefundSuccessful(true);
-
-
-        } else {
-
-            System.out.println("Transaction not found.");
-        }
-
-
-
-
-
-
-
-
-    }
-
 
     @Override
     public String GetUsername() {

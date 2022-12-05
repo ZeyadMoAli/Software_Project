@@ -19,7 +19,7 @@ public class SpecificDiscount implements Idiscount{
         customers.remove(customer);
     }
 
-    public void setDiscountAmount(int amount, Iservice iservice) {
+    public void setDiscountAmount(double amount, Iservice iservice) {
         iservice.setDiscount_amoutn(amount);
     }
 

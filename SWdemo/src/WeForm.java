@@ -1,30 +1,39 @@
+import java.util.Scanner;
+
 public class WeForm implements Iform {
     private String name;
-    private int amount=0;
-    private int phonenum=0;
 
-        public void payamount(int amount)
-        {
-            this.amount=amount;
-        }
+    private double phonenum=0;
 
 
-    @Override
+    public void Fill()
+    {
+        Scanner obj = new Scanner(System.in);
+        System.out.println("Enter your name:");
+        name=obj.nextLine();
+        System.out.println("Enter your phone number");
+        phonenum=obj.nextInt();
+
+    }
+
+
+
+
     public void setPhoneNum(int phonenum) {
         this.phonenum=phonenum;
     }
 
-    @Override
-    public int GetPhoneNum() {
+
+    public double GetPhoneNum() {
         return phonenum;
     }
 
-    @Override
+
     public void SetName(String Name) {
     this.name=name;
     }
 
-    @Override
+
     public String GetName() {
             return this.name;
     }

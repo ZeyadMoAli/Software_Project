@@ -1,17 +1,17 @@
 public class Donations implements Iservice{
     String name="Donation";
-    int discount_amoutn=0;
+    double discount_amoutn=0;
     @Override
     public String getName() {
         return name;
     }
     @Override
-    public void setDiscount_amoutn(int discount_amoutn) {
+    public void setDiscount_amoutn(double discount_amoutn) {
         this.discount_amoutn=discount_amoutn;
     }
 
     @Override
-    public int GetDiscount() {
+    public double GetDiscount() {
         return this.discount_amoutn;
     }
 

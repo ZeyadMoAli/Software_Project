@@ -1,10 +1,6 @@
-import java.util.TreeMap;
-
-public class CraditCard implements Payment{
+public class CraditCard implements IpaymentOptions {
 	 private double balance = 200000;
-	 double GetBalance() {
-		 return balance;
-	 }
+
 
 
 	@Override
@@ -16,5 +12,10 @@ public class CraditCard implements Payment{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public double GetBalance() {
+		return this.balance;
 	}
 }

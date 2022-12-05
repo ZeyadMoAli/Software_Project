@@ -15,7 +15,7 @@ public class OverAllDiscount implements Idiscount{
         customers.remove(user);
     }
 
-    public void notifyall(int amount) {
+    public void notifyall(double amount) {
         for(Customer customer : customers )
         {
             customer.upDateDiscount(amount);
@@ -23,7 +23,7 @@ public class OverAllDiscount implements Idiscount{
     }
 
 
-    public void setDiscountAmount(int amount) {
+    public void setDiscountAmount(double amount) {
         for(Customer customer: customers)
         {
             customer.upDateDiscount(amount);

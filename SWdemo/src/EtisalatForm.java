@@ -1,27 +1,36 @@
+import java.util.Scanner;
+
 public class EtisalatForm implements Iform{
     private String name;
     private int amount=0;
     private int phonenum=0;
 
 
-    @Override
+    public void Fill()
+    {
+        Scanner obj = new Scanner(System.in);
+        System.out.println("Enter your name:");
+        name=obj.nextLine();
+        System.out.println("Enter your phone number");
+        phonenum=obj.nextInt();
+    }
     public void setPhoneNum(int phonenum) {
         this.phonenum = phonenum;
     }
 
-    @Override
+
     public int GetPhoneNum() {
         return phonenum;
     }
 
 
-    @Override
+
     public void SetName(String name) {
         this.name=name;
 
     }
 
-    @Override
+
     public String GetName() {
         return name;
     }

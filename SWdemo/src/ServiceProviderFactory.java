@@ -27,6 +27,11 @@ public class ServiceProviderFactory implements IserviceProviderFactory{
             NGOS ngos=new NGOS();
             return ngos;
         }
+        else if(s.equals("Vodafone"))
+        {
+            Vodafone vodafone=new Vodafone();
+            return vodafone;
+        }
         else {
             CancerHospital cancerHospital=new CancerHospital();
             return cancerHospital;

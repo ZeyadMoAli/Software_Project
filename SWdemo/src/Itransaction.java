@@ -1,18 +1,27 @@
 public interface Itransaction {
 
-    public void setTransactionID();
-    public void setTransactionUser();
-    public void setPaymentMethod();
 
-    public void setAmount();
+
     public void setIsRefunded(boolean status);
     public void setIsRefund(boolean status);
-    public void setRefundSuccessful(boolean status);
-    public String getTransactionID();
-    public String getTransactionUser();
-    public double getAmount();
-    public boolean getIsRefunded();
-    public boolean getRefundSuccessful();
+    public int GetTransactionId();
 
+    public boolean getIsRefunded();
+
+    public boolean getIsRefund();
+
+    public Customer Getcustomer();
+    public  void SetCustomer(Customer customer);
+
+
+    public Iservice GetService();
+    public void SetService(Iservice iservice);
+
+    public IserviceProvider GetServiceProvicer();
+    public void SetServiceProvider (IserviceProvider iserviceProvider);
+
+
+    public PaymentForm GetPaymentForm();
+    public void SetPaymentForm (PaymentForm paymentForm);
 
 }
