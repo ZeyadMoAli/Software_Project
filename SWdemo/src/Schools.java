@@ -6,4 +6,4 @@ public class Schools {
         form =new SchoolsForm();
     }
 }
-}
+

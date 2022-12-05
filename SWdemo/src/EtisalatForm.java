@@ -1,10 +1,7 @@
-public class WeForm implements Iform {
-
-
+public class EtisalatForm implements Iform{
     private String name;
     private int amount=0;
     private int phonenum=0;
-
 
     @Override
     public void setPhoneNum(int phonenum) {
@@ -19,7 +16,7 @@ public class WeForm implements Iform {
 
     @Override
     public void SetName(String name) {
-          this.name=name;
+        this.name=name;
     }
 
     @Override
@@ -31,6 +28,4 @@ public class WeForm implements Iform {
     {
         this.amount=amount;
     }
-
-
 }
