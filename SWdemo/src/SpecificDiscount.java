@@ -2,8 +2,9 @@ import java.util.ArrayList;
 
 public class SpecificDiscount implements Idiscount{
     private int discountAmount=0;
-
+    ServiceProvider iserviceProvider;
     private ArrayList<Customer> customers;
+
     SpecificDiscount()
     {
         customers=new ArrayList<Customer>();

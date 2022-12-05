@@ -4,11 +4,8 @@ public class OverAllDiscount implements Idiscount{
     private int discountAmount=0;
 
 
-    private ArrayList<Customer> customers;
-    OverAllDiscount()
-    {
+    private ArrayList<Customer> customers=new ArrayList<Customer>();
 
-    }
     @Override
     public void subscribe(Customer user) {
         customers.add(user);

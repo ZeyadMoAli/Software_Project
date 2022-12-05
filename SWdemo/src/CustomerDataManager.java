@@ -7,4 +7,17 @@ public class CustomerDataManager implements IdataManger{
         customers.add(customer);
     }
 
+
+    boolean FindCustomer(Customer customer)
+    {
+        for(Customer customer1: customers)
+        {
+            if(customer1.GetUsername() ==customer.GetUsername() && customer.GetEmail()==customer.GetEmail())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

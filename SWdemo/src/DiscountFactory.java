@@ -1,14 +1,18 @@
 public class DiscountFactory implements IDiscountFactory{
-    Idiscount idiscount;
+
     @Override
     public Idiscount MakeObj(String DiscoutType) {
         if(DiscoutType== "Over All Discount")
         {
+            OverAllDiscount idiscount;
             idiscount= new OverAllDiscount();
             return idiscount;
         }
-
-        idiscount= new SpecificDiscount();
-        return idiscount;
+        else
+        {
+            SpecificDiscount idiscount;
+            idiscount= new SpecificDiscount();
+            return idiscount;
+        }
     }
 }
