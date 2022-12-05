@@ -110,7 +110,12 @@ class Customer implements IUser {
 
         if(transaction==null)
             return false;
-        return true;
+        else {
+            transactionDataManager.FromTransactiontoRefund(transaction);
+            return true;
+
+        }
+
     }
 
     double GetWalletBalance()
