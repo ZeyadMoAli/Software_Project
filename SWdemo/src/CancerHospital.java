@@ -1,4 +1,4 @@
-public class CancerHospital {
+public class CancerHospital{
     Iform form;
     CancerHospital()
     {

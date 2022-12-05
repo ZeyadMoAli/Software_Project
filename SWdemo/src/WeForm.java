@@ -4,12 +4,10 @@ public class WeForm implements Iform {
     private int phonenum=0;
 
 
-<<<<<<< HEAD
     @Override
     public void setPhoneNum(int phonenum) {
-=======
+
     public void setPhoneNum() {
->>>>>>> 62bed8aefa3e180dbabb4ae97509f48b1825e628
         this.phonenum=phonenum;
     }
 
