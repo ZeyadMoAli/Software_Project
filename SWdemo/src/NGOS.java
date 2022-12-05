@@ -1,4 +1,4 @@
-public class NGOS {
+public class NGOS implements IserviceProvider  {
     Iform form;
     NGOS()
     {

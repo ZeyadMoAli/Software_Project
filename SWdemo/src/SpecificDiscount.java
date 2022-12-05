@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class SpecificDiscount implements Idiscount{
-    private int discountAmount=0;
-    ServiceProvider iserviceProvider;
+
+    ServiceProviderFactory iserviceProvider;
     private ArrayList<Customer> customers;
 
     SpecificDiscount()
@@ -19,20 +19,8 @@ public class SpecificDiscount implements Idiscount{
         customers.remove(customer);
     }
 
-    @Override
-    public int getDiscountAmount() {
-        return this.discountAmount;
+    public void setDiscountAmount(int amount, Iservice iservice) {
+        iservice.setDiscount_amoutn(amount);
     }
 
-    @Override
-    public void setDiscountAmount(int amount) {
-        this.discountAmount=amount;
-
-
-    }
-
-    @Override
-    public void notifyall() {
-
-    }
 }

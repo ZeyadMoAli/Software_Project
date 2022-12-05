@@ -5,6 +5,7 @@ public class CancerHospitalForm implements Iform{
     private String hospitalName;
     private String roomnum;
 
+
     @Override
     public void setPhoneNum(int phonenum) {
         this.phonenum=phonenum;

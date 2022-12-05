@@ -1,4 +1,4 @@
-public class Vodafone {
+public class Vodafone implements IserviceProvider {
     Iform form;
     Vodafone()
     {

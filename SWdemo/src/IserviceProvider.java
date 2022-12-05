@@ -1,5 +1,5 @@
-public class IserviceProvider {
- Iform f;
-
+public interface IserviceProvider {
+ Iform f= null;
+ Boolean cash= true;
 }
 

@@ -3,13 +3,14 @@ public class WeForm implements Iform {
     private int amount=0;
     private int phonenum=0;
 
+        public void payamount(int amount)
+        {
+            this.amount=amount;
+        }
 
-<<<<<<< HEAD
+
     @Override
     public void setPhoneNum(int phonenum) {
-=======
-    public void setPhoneNum() {
->>>>>>> 62bed8aefa3e180dbabb4ae97509f48b1825e628
         this.phonenum=phonenum;
     }
 
@@ -18,21 +19,13 @@ public class WeForm implements Iform {
         return phonenum;
     }
 
-
     @Override
-    public void SetName(String name) {
-          this.name=name;
+    public void SetName(String Name) {
+    this.name=name;
     }
 
     @Override
     public String GetName() {
-        return name;
+            return this.name;
     }
-
-    public void payamount(int amount)
-    {
-        this.amount=amount;
-    }
-
-
 }

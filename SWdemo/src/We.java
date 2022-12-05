@@ -1,4 +1,4 @@
-public class We extends ServiceProvider {
+public class We implements IserviceProvider {
     Iform form;
     We()
     {

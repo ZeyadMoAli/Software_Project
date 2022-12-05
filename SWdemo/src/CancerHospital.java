@@ -1,4 +1,4 @@
-public class CancerHospital {
+public class CancerHospital implements IserviceProvider  {
     Iform form;
     CancerHospital()
     {
@@ -6,4 +6,4 @@ public class CancerHospital {
         form =new CancerHospitalForm();
     }
 }
-}
+

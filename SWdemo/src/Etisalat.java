@@ -1,4 +1,4 @@
-public class Etisalat {
+public class Etisalat implements IserviceProvider  {
     Iform form;
     Etisalat()
     {
