@@ -1,9 +1,11 @@
-public class Wallet  implements Payment{
+public class Wallet  implements IpaymentOptions {
 	double balance = 0;
 	void AddBalance (CraditCard c,int num) {
 		c.pay(num);
 		balance+=num;
 	}
+
+
 
 	@Override
 	public Boolean pay(double amount) {
@@ -14,5 +16,10 @@ public class Wallet  implements Payment{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public double GetBalance() {
+		return this.balance;
 	}
 }

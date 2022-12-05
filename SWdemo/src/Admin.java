@@ -2,25 +2,28 @@ class Admin implements IUser {
     private String username;
     private String email;
     private String password;
-    private static  OverAllDiscount overAllDiscount;
-    private static SpecificDiscount specificDiscount;
     Admin(){};
     Admin(String username,String email,String password){
         SetUsername(username);
         SetEmail(email);
         SetPassword(password);
     }
-    public void MakeOverAllDiscount( int discountAmount)
+    void HandleRefund(TransactionDataManager transactionDataManager)
     {
-        overAllDiscount = new OverAllDiscount();
+        transactionDataManager.hadleRefund();
+
+    }
+    public void MakeOverAllDiscount( double discountAmount ,OverAllDiscount overAllDiscount)
+    {
         overAllDiscount.setDiscountAmount(discountAmount);
 
     }
-    public void MakeSpecificDiscount( int discountAmount)
+    public void MakeSpecificDiscount( double discountAmount, Iservice iservice ,SpecificDiscount specificDiscount)
     {
-        specificDiscount = new SpecificDiscount();
-        specificDiscount.setDiscountAmount(discountAmount);
+        specificDiscount.setDiscountAmount(discountAmount, iservice);
+
     }
+
 
     @Override
     public String GetUsername() {

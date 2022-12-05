@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class OverAllDiscount implements Idiscount{
-    private int discountAmount=0;
 
 
     private ArrayList<Customer> customers=new ArrayList<Customer>();
@@ -16,21 +15,18 @@ public class OverAllDiscount implements Idiscount{
         customers.remove(user);
     }
 
-    @Override
-    public void notifyall() {
+    public void notifyall(double amount) {
         for(Customer customer : customers )
         {
-            customer.upDateDiscount(discountAmount);
+            customer.upDateDiscount(amount);
         }
     }
 
-    @Override
-    public int getDiscountAmount() {
-        return this.discountAmount;
-    }
 
-    @Override
-    public void setDiscountAmount(int amount) {
-        this.discountAmount=amount;
+    public void setDiscountAmount(double amount) {
+        for(Customer customer: customers)
+        {
+            customer.upDateDiscount(amount);
+        }
     }
 }

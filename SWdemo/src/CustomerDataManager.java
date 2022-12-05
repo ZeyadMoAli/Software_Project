@@ -12,7 +12,12 @@ public class CustomerDataManager implements IdataManger{
     {
         for(Customer customer1: customers)
         {
-            if(customer1.GetUsername() ==customer.GetUsername() && customer.GetEmail()==customer.GetEmail())
+            String c1user=customer1.GetUsername();
+            String c1mail= customer1.GetEmail();
+            String cuser=customer.GetUsername();
+            String cmail= customer.GetEmail();
+
+            if(c1user.equals( cuser) && c1mail.equals(cmail))
             {
                 return true;
             }

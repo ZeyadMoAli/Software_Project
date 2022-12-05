@@ -1,49 +1,80 @@
+import java.time.temporal.Temporal;
+import java.util.Scanner;
+
 class Customer implements IUser {
     private String username;
     private String email;
     private String password;
-    private int discount_amount=0;
-    private CraditCard craditCard= new CraditCard();
+    private double discount_amount = 0;
+    private CraditCard craditCard = new CraditCard();
     private Wallet wallet = new Wallet();
-    Customer(){}
-    Customer(String username,String email,String password){
+
+    Customer() {
+    }
+
+    Customer(String username, String email, String password) {
         SetUsername(username);
         SetEmail(email);
         SetPassword(password);
     }
-    void AddToWallet(int balance)
-    {
-        wallet.AddBalance(craditCard,balance);
-    }
-    void upDateDiscount(int amount)
-    {
-        this.discount_amount= amount;
+
+    void AddToWallet(int balance) {
+        wallet.AddBalance(craditCard, balance);
     }
 
-    void apply_discount()
-    {
-        if(this.discount_amount==0)
-            System.out.println("You have No discount on this service");
-        else
-        {
-
-            System.out.println("You have "+ discount_amount +"% discount on this service");
-        }
+    void upDateDiscount(double amount) {
+        this.discount_amount = amount;
     }
-    void Register(CustomerDataManager customerDataManager)
-    {
+    void Register(CustomerDataManager customerDataManager) {
         customerDataManager.addCustomer(this);
     }
 
-    Boolean Login(CustomerDataManager customerDataManager)
-    {
-        if(customerDataManager.FindCustomer(this))
-        {
+    Boolean Login(CustomerDataManager customerDataManager) {
+        if (customerDataManager.FindCustomer(this)) {
             return true;
         }
         return false;
 
     }
+    Iservice Search(String s, ServiceDataManger serviceDataManger)
+    {
+        return serviceDataManger.Search(s);
+    }
+    public double Getdiscount()
+    {
+        return this.discount_amount;
+    }
+
+    public  void Pay(double amount, IserviceProvider iserviceProvider)
+    {
+        String  s;
+        Scanner scn=new Scanner(System.in);
+        if (iserviceProvider.CashState())
+        {
+            System.out.println("Enter Payment option (Credit, Wallet ,Cash)");
+            s = scn.nextLine();
+            if(s.equals("Credit"))
+            {
+                craditCard.pay(amount);
+            }else if(s.equals("Wallet"))
+            {
+                wallet.pay(amount);
+            }
+        }
+        else {
+            System.out.println("Enter Payment option (Credit, Wallet)");
+            s = scn.nextLine();
+            if(s.equals("Credit"))
+            {
+                craditCard.pay(amount);
+            }else if(s.equals("Wallet"))
+            {
+                wallet.pay(amount);
+            }
+
+        }
+    }
+
     @Override
     public String GetUsername() {
         return this.username;
@@ -60,17 +91,34 @@ class Customer implements IUser {
     }
 
     @Override
-    public void SetUsername(String username) {
-        this.username=username;
+    public void SetUsername(String Username) {
+        username = Username;
     }
 
     @Override
-    public void SetEmail(String email) {
-        this.email=email;
+    public void SetEmail(String Email) {
+        email = Email;
     }
 
     @Override
-    public void SetPassword(String password) {
-        this.password=password;
+    public void SetPassword(String Password) {
+        password = Password;
+    }
+
+    public Boolean refund(int id, TransactionDataManager transactionDataManager) {
+        Transaction transaction= transactionDataManager.transactionSearch(id);
+
+        if(transaction==null)
+            return false;
+        return true;
+    }
+
+    double GetWalletBalance()
+    {
+        return wallet.balance;
+    }
+    double GetCreditBalance()
+    {
+        return craditCard.GetBalance();
     }
 }

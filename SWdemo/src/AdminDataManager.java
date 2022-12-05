@@ -7,15 +7,6 @@ public class AdminDataManager implements IdataManger{
         admins.add(admin);
     }
 
-    boolean FindAdmin(Admin admin)
-    {
-        for(Admin admin1: admins)
-        {
-            if(admin1.GetUsername() == admin.GetUsername()  && admin1.GetEmail()==admin.GetEmail() )
-                return true;
-        }
-        return false;
-    }
 
 
 }
