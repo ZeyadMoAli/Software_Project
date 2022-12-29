@@ -27,7 +27,7 @@ public class DiscountFactory implements IDiscountFactory{
             System.out.println("4.Donation");
             int choice2=scanner.nextInt();
             ServiceFactory serviceFactory=new ServiceFactory();
-            Iservice iservice= serviceFactory.makeObj(choice);
+            Iservice iservice= serviceFactory.makeObj(choice2);
             SpecificDiscount specificDiscount =new SpecificDiscount( iservice,amount);
             return specificDiscount;
         }

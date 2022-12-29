@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class NGOSForm implements Iform{
     private String name;
-    private int phonenum=0;
+    private String phonenum;
     private String NGOName;
     private String roomnum;
 
@@ -12,18 +12,18 @@ public class NGOSForm implements Iform{
     {
         Scanner obj = new Scanner(System.in);
         System.out.println("Enter your phone number");
-        phonenum=obj.nextInt();
+        phonenum=obj.nextLine();
 
         System.out.println("Enter NGO name");
         NGOName=obj.nextLine();
 
     }
-    public void setPhoneNum(int phonenum) {
+    public void setPhoneNum(String phonenum) {
         this.phonenum=phonenum;
     }
 
 
-    public int GetPhoneNum() {
+    public String GetPhoneNum() {
         return phonenum;
     }
 

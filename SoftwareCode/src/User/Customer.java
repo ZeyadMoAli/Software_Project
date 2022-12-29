@@ -10,7 +10,7 @@ public class Customer implements IUser {
     private String username;
     private String email;
     private String password;
-    private double discount = 0;
+    private static double discount = 0;
     private Wallet wallet = new Wallet();
 
     private CraditCard craditCard = new CraditCard();

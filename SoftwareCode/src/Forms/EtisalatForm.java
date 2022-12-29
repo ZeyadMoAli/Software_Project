@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class EtisalatForm implements Iform{
     private String name;
-    private int amount=0;
-    private int phonenum=0;
+    private String phonenum;
 
 
     public void Fill()
@@ -13,14 +12,14 @@ public class EtisalatForm implements Iform{
 
         Scanner obj = new Scanner(System.in);
         System.out.println("Enter your phone number");
-        phonenum=obj.nextInt();
+        phonenum=obj.nextLine();
     }
-    public void setPhoneNum(int phonenum) {
+    public void setPhoneNum(String phonenum) {
         this.phonenum = phonenum;
     }
 
 
-    public int GetPhoneNum() {
+    public String GetPhoneNum() {
         return phonenum;
     }
 
@@ -36,8 +35,5 @@ public class EtisalatForm implements Iform{
         return name;
     }
 
-    public void payamount(int amount)
-    {
-        this.amount=amount;
-    }
+
 }

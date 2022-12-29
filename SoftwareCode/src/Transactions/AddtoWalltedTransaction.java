@@ -41,4 +41,16 @@ public class AddtoWalltedTransaction implements Itransaction{
     public void SetCustomer(Customer customer) {
         this.customer=customer;
     }
+    public String getCustomerName()
+    {
+        return customer.GetUsername();
+    }
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
 }

@@ -1,9 +1,7 @@
 package User;
 import Database.*;
-import Discount.OverAllDiscount;
-import Discount.SpecificDiscount;
 import Factories.DiscountFactory;
-import Service.*;
+
 public class Admin implements IUser {
     private String username;
     private String email;
@@ -41,13 +39,25 @@ public class Admin implements IUser {
     }
     public  void HandleRefund(TransactionDataManager transactionDataManager)
     {
-        transactionDataManager.ListRefund();
+        transactionDataManager.HandelRefund();
 
     }
     public void MakeDiscount(double discountAmount ,CustomerDataManager customerDataManager ,int choice )
     {
         DiscountFactory discountFactory =new DiscountFactory();
         discountFactory.MakeObj(choice,discountAmount,customerDataManager);
+    }
+    public void ListPaymentTransactions(TransactionDataManager transactionDataManager)
+    {
+        transactionDataManager.ListPaymentTransactions();
+    }
+    public void ListRefundTransactions(TransactionDataManager transactionDataManager)
+    {
+        transactionDataManager.ListRefundTransactions();
+    }
+    public void ListAddtoWalletTransactions(TransactionDataManager transactionDataManager)
+    {
+        transactionDataManager.ListAddtoWalledTransactions();
     }
 
 

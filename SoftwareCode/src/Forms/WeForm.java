@@ -5,26 +5,26 @@ import java.util.Scanner;
 public class WeForm implements Iform {
     private String name;
 
-    private double phonenum=0;
+    private String phonenum;
 
 
     public void Fill()
     {
         Scanner obj = new Scanner(System.in);
         System.out.println("Enter your phone number");
-        phonenum=obj.nextInt();
+        phonenum=obj.nextLine();
 
     }
 
 
 
 
-    public void setPhoneNum(int phonenum) {
+    public void setPhoneNum(String phonenum) {
         this.phonenum=phonenum;
     }
 
 
-    public double GetPhoneNum() {
+    public String GetPhoneNum() {
         return phonenum;
     }
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class SpecificDiscount implements Idiscount{
 
-    ArrayList<Iservice> iservices ;
+    ArrayList<Iservice> iservices =new ArrayList<Iservice>() ;
     public SpecificDiscount (Iservice iservice,  double amount)
     {
         subscribe(iservice);
