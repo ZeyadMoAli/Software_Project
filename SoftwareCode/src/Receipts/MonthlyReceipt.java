@@ -1,8 +1,12 @@
 package Receipts;
 
 public class MonthlyReceipt implements Ireceipt{
-    @Override
-    public int makereceipt() {
-        return 0;
+    double receipt=100;
+    public double getReceip() {
+        return receipt;
+    }
+
+    public void setReceip(double receip) {
+        this.receipt = receip;
     }
 }

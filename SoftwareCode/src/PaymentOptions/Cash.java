@@ -4,11 +4,7 @@ public class Cash implements IpaymentOptions{
 
     @Override
     public Boolean pay(double amount) {
-        return null;
+        return true;
     }
-
-    @Override
-    public double GetBalance() {
-        return 0;
-    }
+    
 }

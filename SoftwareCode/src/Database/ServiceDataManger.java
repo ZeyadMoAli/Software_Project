@@ -3,17 +3,16 @@ import Service.*;
 import java.util.*;
 
 public class ServiceDataManger implements IdataManger{
-    ArrayList<Iservice> iservices= new ArrayList<Iservice>();
+    public ArrayList<Iservice> iservices= new ArrayList<Iservice>();
     public void Addservice(Iservice iservice)
     {
         iservices.add(iservice);
     }
-    public Iservice Search(String  s)
+    public Iservice Search(String  sevice)
     {
         for(Iservice iservice1 :iservices)
         {
-            String name=iservice1.getName();
-            if(s.equals(name))
+            if(iservice1.getName().equals(sevice))
                 return iservice1;
         }
         return null;

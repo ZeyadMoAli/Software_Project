@@ -1,8 +1,13 @@
 package Receipts;
 
 public class QuarterReceipt implements Ireceipt{
-    @Override
-    public int makereceipt() {
-        return 0;
+    double receipt=300;
+
+    public double getReceip() {
+        return receipt;
+    }
+
+    public void setReceip(double receip) {
+        this.receipt = receip;
     }
 }

@@ -11,8 +11,6 @@ public class OrangeForm implements Iform{
     public void Fill()
     {
         Scanner obj = new Scanner(System.in);
-        System.out.println("Enter your name:");
-        name=obj.nextLine();
         System.out.println("Enter your phone number");
         phonenum=obj.nextInt();
         System.out.println("Enter the amount you want to pay");

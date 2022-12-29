@@ -20,7 +20,8 @@ public class Etisalat implements IserviceProvider  {
     }
 
     @Override
-    public void FillForm() {
+    public void FillForm(String Name) {
+        form.SetName(name);
         form.Fill();
     }
 }

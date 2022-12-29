@@ -18,7 +18,8 @@ public class We implements IserviceProvider {
         return this.cash;
     }
     @Override
-    public void FillForm() {
+    public void FillForm(String Name){
+        form.SetName(name);
         form.Fill();
     }
 

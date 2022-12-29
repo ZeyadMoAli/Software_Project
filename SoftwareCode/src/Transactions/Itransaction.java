@@ -6,10 +6,9 @@ import User.*;
 import ServiceProvider.*;
 
 public interface Itransaction {
+     double amount = 0;
 
-
-
-    void seTrefundStatus(Boolean state);
+    void setRefundStatus(Boolean state);
     boolean GetRefundStatus();
     public int GetTransactionId();
 
@@ -18,14 +17,8 @@ public interface Itransaction {
     public  void SetCustomer(Customer customer);
 
 
-    public Iservice GetService();
-    public void SetService(Iservice iservice);
-
-    public IserviceProvider GetServiceProvicer();
-    public void SetServiceProvider (IserviceProvider iserviceProvider);
 
 
-    public PaymentForm GetPaymentForm();
-    public void SetPaymentForm (PaymentForm paymentForm);
+
 
 }

@@ -6,8 +6,7 @@ public class Orange  implements IserviceProvider {
     Boolean cash=false;
     public Orange()
     {
-
-
+        form =new OrangeForm();
     }
     @Override
     public String getname() {
@@ -19,7 +18,8 @@ public class Orange  implements IserviceProvider {
     }
 
     @Override
-    public void FillForm() {
+    public void FillForm(String Name) {
+        form.SetName(name);
         form.Fill();
     }
 }

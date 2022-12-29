@@ -1,14 +1,15 @@
 package PaymentOptions;
 
 public class Wallet  implements IpaymentOptions {
-	public double balance = 0;
-	public void AddBalance (CraditCard c,int num) {
-		c.pay(num);
-		balance+=num;
+	private double balance = 0;
+	public boolean AddBalance (CraditCard c,double num) {
+		if(c.pay(num) ==true)
+		{
+			balance+=num;
+			return true;
+		}
+		return false;
 	}
-
-
-
 	@Override
 	public Boolean pay(double amount) {
 		if(balance>=amount)
@@ -20,7 +21,7 @@ public class Wallet  implements IpaymentOptions {
 		return false;
 	}
 
-	@Override
+
 	public double GetBalance() {
 		return this.balance;
 	}

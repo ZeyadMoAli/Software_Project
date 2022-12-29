@@ -1,4 +1,6 @@
 package Discount;
+import Database.ServiceDataManger;
+import Factories.ServiceFactory;
 import Factories.ServiceProviderFactory;
 import Service.*;
 import User.*;
@@ -7,25 +9,28 @@ import java.util.ArrayList;
 
 public class SpecificDiscount implements Idiscount{
 
-    ServiceProviderFactory iserviceProvider;
-    private ArrayList<Customer> customers;
-
-    public SpecificDiscount()
+    ArrayList<Iservice> iservices ;
+    public SpecificDiscount (Iservice iservice,  double amount)
     {
-        customers=new ArrayList<Customer>();
-    }
-    @Override
-    public void subscribe(Customer customer) {
-        customers.add(customer);
+        subscribe(iservice);
+        setDiscountAmount(amount);
     }
 
-    @Override
-    public void unsubscribe(Customer customer) {
-        customers.remove(customer);
+    public void subscribe(Iservice service) {
+        iservices.add(service);
+    }
+    public void unsubscribe(Iservice service) {
+        iservices.remove(service);
+    }
+    public void notifyall(double amount) {
+        for(Iservice ser : iservices)
+        {
+            ser.setDiscount(amount);
+        }
     }
 
-    public void setDiscountAmount(double amount, Iservice iservice) {
-        iservice.setDiscount_amoutn(amount);
+    public void setDiscountAmount(double amount) {
+        notifyall(amount);
     }
 
 }

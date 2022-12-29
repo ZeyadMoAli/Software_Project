@@ -1,6 +1,7 @@
 package Receipts;
 
 public interface Ireceipt {
-    int makereceipt();
+    double receipt=0;
+
 
 }

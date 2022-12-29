@@ -1,10 +1,7 @@
 package PaymentOptions;
 
 public class CraditCard implements IpaymentOptions {
-	 private double balance = 200000;
-
-
-
+	 private double balance = 1000;
 	@Override
 	public Boolean pay(double amount) {
 		if(balance>=amount)
@@ -16,7 +13,6 @@ public class CraditCard implements IpaymentOptions {
 		return false;
 	}
 
-	@Override
 	public double GetBalance() {
 		return this.balance;
 	}
