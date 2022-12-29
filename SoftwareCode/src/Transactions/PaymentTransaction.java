@@ -9,7 +9,7 @@ public class PaymentTransaction implements Itransaction{
     private double amount = 0;
     private double discount=0;
     private double NetAmount= amount - discount;
-    private int count=0;
+    private static int count=0;
     private  int  transactionID;
     private Customer customer;
     private Iservice iservice;

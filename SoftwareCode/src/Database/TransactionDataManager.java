@@ -9,7 +9,7 @@ public class TransactionDataManager implements IdataManger {
 
     public void AddWalletTransaction(AddtoWalltedTransaction addtoWalltedTransaction)
     {
-        this.WalletTransaction.add(addtoWalltedTransaction);
+        WalletTransaction.add(addtoWalltedTransaction);
     }
     public PaymentTransaction transactionSearch(int TransactionId) {
         for(PaymentTransaction transaction: paymentTransactions)
@@ -42,7 +42,7 @@ public class TransactionDataManager implements IdataManger {
     }
     public void ListAddtoWalledTransactions ()
     {
-        if(Refund.isEmpty())
+        if(WalletTransaction.isEmpty())
         {
             System.out.println("There aren't any Add to wallet transactions");
             return;
