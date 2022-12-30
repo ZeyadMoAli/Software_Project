@@ -8,14 +8,13 @@ public class ServiceDataManger implements IdataManger{
     {
         iservices.add(iservice);
     }
-    public Iservice Search(String  sevice)
+    public Iservice Search(String  service)
     {
         for(Iservice iservice1 :iservices)
         {
-            if(iservice1.getName().equals(sevice))
+            if(iservice1.getName().equals(service))
                 return iservice1;
         }
         return null;
-
     }
 }

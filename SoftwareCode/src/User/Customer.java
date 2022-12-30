@@ -1,5 +1,8 @@
 package User;
 import Database.*;
+import Factories.IserviceProviderFactory;
+import Factories.ServiceFactory;
+import Factories.ServiceProviderFactory;
 import PaymentOptions.*;
 import Service.*;
 import ServiceProvider.*;
@@ -44,25 +47,54 @@ public class Customer implements IUser {
     }
 
     public void setDiscount(double discount_amount) {
-        this.discount = discount_amount;
+        discount = discount_amount;
     }
     public Customer() {}
 
 
 
     public Customer(String username, String email, String password) {
-        SetUsername(username);
-        SetEmail(email);
-        SetPassword(password);
+        setUsername(username);
+        setEmail(email);
+        setPassword(password);
     }
-    public boolean AddToWallet(double balance) {
-        return wallet.AddBalance(craditCard, balance);
+    public boolean AddToWallet(double balance , TransactionDataManager transactionDataManager) {
+        if( wallet.AddBalance(craditCard, balance))
+        {
+            AddtoWalltedTransaction  addtoWalltedTransaction=new AddtoWalltedTransaction(balance,this);
+            transactionDataManager.AddWalletTransaction(addtoWalltedTransaction);
+            return true;
+        }
+        return false;
+    }
+    public double checkServiceDiscount(int choice)
+    {
+        ServiceFactory serviceFactory=new ServiceFactory();
+        Iservice iservice= serviceFactory.makeObj(choice);
+        return iservice.getDiscount();
+    }
+    public PaymentTransaction makeService(int serviceChoice,int serviceProviderChoice, double amount, TransactionDataManager transactionDataManager)
+    {
+        ServiceFactory serviceFactory=new ServiceFactory();
+        Iservice iservice= serviceFactory.makeObj(serviceChoice);
+        IserviceProviderFactory serviceProviderFactory = new ServiceProviderFactory();
+        IserviceProvider iserviceProvider = serviceProviderFactory.makeObj(serviceProviderChoice);
+        iserviceProvider.FillForm(this.getUsername());
+        PaymentTransaction itransaction =new PaymentTransaction(this, iservice,iserviceProvider,amount,iservice.getDiscount()+ this.getDiscount());
+        if(Pay(itransaction.getNetAmount(), iserviceProvider ))
+        {
+            transactionDataManager.AddtoPaymentTransaction(itransaction);
+            return itransaction;
+        }
+        return null ;
+
+
     }
 
     public void upDateDiscount(double amount) {
         this.discount = amount;
     }
-    public Customer Register(CustomerDataManager customerDataManager) {
+    public Customer SignUp(CustomerDataManager customerDataManager) {
         Customer customer =new Customer();
         customer=customerDataManager.FindCustomer(this);
         if(customer == null )
@@ -74,17 +106,13 @@ public class Customer implements IUser {
 
     }
 
-    public Customer Login(CustomerDataManager customerDataManager) {
+    public Customer SignIn(CustomerDataManager customerDataManager) {
         return customerDataManager.FindCustomer(this);
 
     }
-    Iservice Search(String s, ServiceDataManger serviceDataManger)
+    public Iservice Search(String serviceName, ServiceDataManger serviceDataManger)
     {
-        return serviceDataManger.Search(s);
-    }
-    public double Getdiscount()
-    {
-        return this.discount;
+        return serviceDataManger.Search(serviceName);
     }
 
     public  boolean Pay(double amount, IserviceProvider iserviceProvider)
@@ -122,36 +150,6 @@ public class Customer implements IUser {
             }
         }
         return false;
-    }
-
-    @Override
-    public String GetUsername() {
-        return this.username;
-    }
-
-    @Override
-    public String GetEmail() {
-        return this.email;
-    }
-
-    @Override
-    public String GetPassword() {
-        return this.password;
-    }
-
-    @Override
-    public void SetUsername(String Username) {
-        username = Username;
-    }
-
-    @Override
-    public void SetEmail(String Email) {
-        email = Email;
-    }
-
-    @Override
-    public void SetPassword(String Password) {
-        password = Password;
     }
 
     public Boolean RefundRequest(int id, TransactionDataManager transactionDataManager) {

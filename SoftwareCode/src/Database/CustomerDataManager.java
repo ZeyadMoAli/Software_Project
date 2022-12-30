@@ -14,7 +14,7 @@ public class CustomerDataManager implements IdataManger{
     {
         for(Customer customer1: customers)
         {
-            if( (customer1.getUsername().equals(customer.getUsername())) && (customer1.getPassword().equals(customer.getPassword())))
+            if( (customer1.getEmail().equals(customer.getEmail())) && (customer1.getPassword().equals(customer.getPassword())))
             {
                 return customer1;
             }

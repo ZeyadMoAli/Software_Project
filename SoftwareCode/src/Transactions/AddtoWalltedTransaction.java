@@ -17,33 +17,41 @@ public class AddtoWalltedTransaction implements Itransaction{
         this.customer = customer;
     }
 
-    @Override
-    public void setRefundStatus(Boolean state) {
-        this.refundStates=state;
-    }
-
-    @Override
-    public boolean GetRefundStatus() {
+    public boolean isRefundStates() {
         return refundStates;
     }
 
-    @Override
-    public int GetTransactionId() {
-        return this.transactionID;
+    public void setRefundStates(boolean refundStates) {
+        this.refundStates = refundStates;
     }
 
-    @Override
-    public Customer Getcustomer() {
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getTransactionID() {
+        return transactionID;
+    }
+
+    public void setTransactionID(int transactionID) {
+        this.transactionID = transactionID;
+    }
+
+    public Customer getCustomer() {
         return customer;
     }
 
-    @Override
-    public void SetCustomer(Customer customer) {
-        this.customer=customer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
+
     public String getCustomerName()
     {
-        return customer.GetUsername();
+        return customer.getUsername();
     }
     public double getAmount() {
         return amount;

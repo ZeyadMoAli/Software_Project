@@ -14,7 +14,7 @@ public class TransactionDataManager implements IdataManger {
     public PaymentTransaction transactionSearch(int TransactionId) {
         for(PaymentTransaction transaction: paymentTransactions)
         {
-            if(transaction.GetTransactionId()== TransactionId)
+            if(transaction.getTransactionID()== TransactionId)
                 return transaction;
         }
         return null;
@@ -49,7 +49,7 @@ public class TransactionDataManager implements IdataManger {
         }
         for (AddtoWalltedTransaction transaction: WalletTransaction)
         {
-            System.out.println("Transaction ID: "+  transaction.GetTransactionId() );
+            System.out.println("Transaction ID: "+  transaction.getTransactionID() );
             System.out.println("Customer Username: "+ transaction.getCustomerName());
             System.out.println("Netamount: "+transaction.getAmount());
             System.out.println(" ");
@@ -64,7 +64,7 @@ public class TransactionDataManager implements IdataManger {
         }
         for (PaymentTransaction transaction: Refund)
         {
-            System.out.println("Transaction ID: "+  transaction.GetTransactionId() );
+            System.out.println("Transaction ID: "+  transaction.getTransactionID() );
             System.out.println("Customer Username: "+ transaction.getCustomerName());
             System.out.println("Netamount: "+transaction.getNetAmount());
             System.out.println("Discount: "+transaction.getDiscount());
@@ -81,9 +81,10 @@ public class TransactionDataManager implements IdataManger {
         }
         for (PaymentTransaction transaction: paymentTransactions)
         {
-            System.out.println("Transaction ID: "+  transaction.GetTransactionId() );
+            System.out.println("Transaction ID: "+  transaction.getTransactionID() );
             System.out.println("Customer Username: "+ transaction.getCustomerName());
             System.out.println("Netamount: "+transaction.getNetAmount());
+
             System.out.println("Discount: "+transaction.getDiscount());
             System.out.println(" ");
         }
@@ -94,15 +95,16 @@ public class TransactionDataManager implements IdataManger {
         Scanner scn = new Scanner(System.in);
 
         for (PaymentTransaction transaction : Refund){
-            System.out.println("Transaction ID: "+  transaction.GetTransactionId() );
+            System.out.println("Transaction ID: "+  transaction.getTransactionID() );
             System.out.println("Customer Username: "+ transaction.getCustomerName());
+            System.out.println("Service"+ transaction.getIservice().getName());
             System.out.println("Amount to be Refunded "+ transaction.getNetAmount());
             System.out.println("Enter State (true = Accepted, false = Rejected) :");
             state=scn.nextBoolean();
-            transaction.setRefundStatus(state);
+            transaction.setRefundStates(state);
             if(state==true)
             {
-                transaction.Getcustomer().AddToWallet(transaction.getNetAmount());
+                transaction.getCustomer().AddToWallet(transaction.getNetAmount(),this);
             }
             else
             {

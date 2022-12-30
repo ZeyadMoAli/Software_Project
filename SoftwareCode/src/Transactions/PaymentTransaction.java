@@ -36,6 +36,22 @@ public class PaymentTransaction implements Itransaction{
     }
 
 
+
+    public void SetServiceProvider(IserviceProvider iserviceProvider) {
+        this.iserviceProvider=iserviceProvider;
+
+    }
+
+    public String getCustomerName()
+    {
+        return customer.getUsername();
+    }
+
+    public String getServiceProviderName()
+    {
+        return iserviceProvider.getname();
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -60,70 +76,43 @@ public class PaymentTransaction implements Itransaction{
         NetAmount = netAmount;
     }
 
-
-    @Override
-    public void setRefundStatus(Boolean state) {
-        this.refundStates=state;
+    public int getTransactionID() {
+        return transactionID;
     }
 
-    @Override
-    public boolean GetRefundStatus() {
-        return refundStates;
+    public void setTransactionID(int transactionID) {
+        this.transactionID = transactionID;
     }
 
-    @Override
-    public int GetTransactionId() {
-        return this.transactionID;
-    }
-
-    @Override
-    public Customer Getcustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    @Override
-    public void SetCustomer(Customer customer) {
-        this.customer=customer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-
-    public Iservice GetService() {
+    public Iservice getIservice() {
         return iservice;
     }
 
-
-    public void SetService(Iservice iservice) {
-    this.iservice=iservice;
+    public void setIservice(Iservice iservice) {
+        this.iservice = iservice;
     }
 
-
-    public IserviceProvider GetServiceProvicer() {
+    public IserviceProvider getIserviceProvider() {
         return iserviceProvider;
     }
 
-
-    public void SetServiceProvider(IserviceProvider iserviceProvider) {
-        this.iserviceProvider=iserviceProvider;
-
+    public void setIserviceProvider(IserviceProvider iserviceProvider) {
+        this.iserviceProvider = iserviceProvider;
     }
 
-    public String getCustomerName()
-    {
-        return customer.GetUsername();
+    public boolean isRefundStates() {
+        return refundStates;
     }
 
-    public String getServiceProviderName()
-    {
-        return iserviceProvider.getname();
+    public void setRefundStates(boolean refundStates) {
+        this.refundStates = refundStates;
     }
-    public String getServiceName()
-    {
-        return iservice.getName();
-    }
-
-
-
-
-
-
 }

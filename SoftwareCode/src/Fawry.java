@@ -1,13 +1,7 @@
 import Database.CustomerDataManager;
 import Database.ServiceDataManger;
 import Database.TransactionDataManager;
-import Discount.OverAllDiscount;
-import Factories.IserviceProviderFactory;
-import Factories.ServiceFactory;
-import Factories.ServiceProviderFactory;
 import Service.*;
-import ServiceProvider.IserviceProvider;
-import Transactions.AddtoWalltedTransaction;
 import Transactions.PaymentTransaction;
 import User.Admin;
 import User.Customer;
@@ -26,7 +20,7 @@ public class Fawry {
         Scanner scannerStr =new Scanner(System.in);
         int choice;
         String stringtoEnter= new String();
-        Customer FirsCustomer =new Customer("zeyad", "gmail", "123");
+        Customer FirsCustomer =new Customer("zeyad", "zz", "123");
         customerDataManager.addCustomer(FirsCustomer);
         Iservice service1 =new MobileRecharge();
         Iservice service2 =new InternetPayment();
@@ -97,64 +91,45 @@ public class Fawry {
                 while (true)
                 {
                     System.out.println("Enter The number of your choice");
-                    System.out.println("1.log in");
-                    System.out.println("2.Register");
+                    System.out.println("1.sign in");
+                    System.out.println("2.sing up");
                     System.out.println("3.Sign out");
                     choice=scanner.nextInt();
                     Customer customer = new Customer();
                     if(choice==1)
                     {
-                        System.out.println("Enter User Name");
-                        stringtoEnter = scannerStr.nextLine();
-                        customer.SetUsername(stringtoEnter);
+                        customer.setUsername(stringtoEnter);
                         System.out.println("Enter Password");
                         stringtoEnter=  scannerStr.nextLine();
                         customer.setPassword(stringtoEnter);
                         System.out.println("Enter Email");
                         stringtoEnter=  scannerStr.nextLine();
                         customer.setEmail(stringtoEnter);
-                        Customer temp= customer.Login(customerDataManager);
-                        if(temp == null)
-                        {
-                            System.out.println("You Did not Registered Before");
-                            customer= customer.Register(customerDataManager);
-                            System.out.println("Registration Completed");
-                            System.out.println(" ");
-
-                        }
-                        else
-                        {
-                            customer= temp;
-                            System.out.println("You loged in successfully");
-                            System.out.println(" ");
-
-                        }
+                        customer= customer.SignIn(customerDataManager);
+                        System.out.println("You Signed in successfully");
+                        System.out.println(" ");
                     }
                     else if(choice ==2)
                     {
-
                         System.out.println("Enter User Name");
                         stringtoEnter = scannerStr.nextLine();
-                        customer.SetUsername(stringtoEnter);
+                        customer.setUsername(stringtoEnter);
                         System.out.println("Enter Password");
                         stringtoEnter=  scannerStr.nextLine();
                         customer.setPassword(stringtoEnter);
                         System.out.println("Enter Email");
                         stringtoEnter=  scannerStr.nextLine();
                         customer.setEmail(stringtoEnter);
-                        Customer temp= customer.Register(customerDataManager);
+                        Customer temp= customer.SignUp(customerDataManager);
                         if(temp  == null)
                         {
-                            System.out.println("You Register before ");
-                            customer= customer.Login(customerDataManager);
-                            System.out.println("You loged in successfully");
-                            System.out.println(" ");
-
+                            System.out.println("Error");
+                            break;
                         }
                         else
                         {
                             customer= temp;
-                            System.out.println("Registration Completed");
+                            System.out.println("Sign Up Completed");
                             System.out.println(" ");
 
                         }
@@ -181,8 +156,7 @@ public class Fawry {
                             System.out.println("3.LandLine");
                             System.out.println("4.Donation");
                             choice=scanner.nextInt();
-                            ServiceFactory serviceFactory=new ServiceFactory();
-                            Iservice iservice= serviceFactory.makeObj(choice);
+
                             if(choice <4)
                             {
                                 System.out.println("Enter The number of your service provider");
@@ -190,29 +164,16 @@ public class Fawry {
                                 System.out.println("2.Orange");
                                 System.out.println("3.Etisalat ");
                                 System.out.println("4.Vodafone");
-                                choice=scanner.nextInt();
-                                IserviceProviderFactory serviceProviderFactory = new ServiceProviderFactory();
-                                IserviceProvider iserviceProvider = serviceProviderFactory.makeObj(choice);
-                                iserviceProvider.FillForm(customer.GetUsername());
-                                if(customer.getDiscount()!=0)
-                                {
-                                    System.out.println("You have discount "+ customer.getDiscount()+"%");
-                                }
-                                if(iservice.getDiscount()!=0)
-                                {
-                                    System.out.println("there is "+ iservice.getDiscount()+ "% on this service");
-                                }
+                                int  ServicePro=scanner.nextInt();
                                 System.out.println("Enter amount of money");
                                 double amount= scanner.nextDouble();
-                                PaymentTransaction itransaction =new PaymentTransaction(customer, iservice,iserviceProvider,amount,iservice.getDiscount()+ customer.getDiscount());
-                                if(customer.Pay(itransaction.getNetAmount(), iserviceProvider ))
+                                PaymentTransaction paymentTransaction =customer.makeService(choice,ServicePro,amount,transactionDataManager);
+                                if(paymentTransaction!=null)
                                 {
                                     System.out.println("Service completed ");
                                     System.out.println("Your Wallet balance is "+customer.GetWalletBalance());
                                     System.out.println("Your Credit Card balance is "+ customer.GetCreditBalance());
-                                    System.out.println("Your transaction Id is "+ itransaction.GetTransactionId());
-                                    transactionDataManager.AddtoPaymentTransaction(itransaction);
-
+                                    System.out.println("Your transaction Id is "+ paymentTransaction.getTransactionID());
                                 }
                                 else
                                 {
@@ -226,20 +187,16 @@ public class Fawry {
                                 System.out.println("5.Schools ");
                                 System.out.println("6.NGOs");
                                 System.out.println("7.Cancer Hospital ");
-                                choice =scanner.nextInt();
-                                IserviceProviderFactory serviceProviderFactory = new ServiceProviderFactory();
-                                IserviceProvider iserviceProvider = serviceProviderFactory.makeObj(choice);
-                                iserviceProvider.FillForm(customer.GetUsername());
+                                int  ServicePro=scanner.nextInt();
                                 System.out.println("Enter amount of money");
                                 double amount= scanner.nextDouble();
-                                PaymentTransaction itransaction =new PaymentTransaction(customer, iservice,iserviceProvider,amount,iservice.getDiscount()+ customer.getDiscount());
-                                if(customer.Pay(itransaction.getNetAmount(), iserviceProvider ))
+                                PaymentTransaction paymentTransaction =customer.makeService(choice,ServicePro,amount,transactionDataManager);
+                                if(paymentTransaction!=null)
                                 {
                                     System.out.println("Service completed ");
                                     System.out.println("Your Wallet balance is "+customer.GetWalletBalance());
                                     System.out.println("Your Credit Card balance is "+ customer.GetCreditBalance());
-                                    System.out.println("Your transaction Id is "+ itransaction.GetTransactionId());
-                                    transactionDataManager.AddtoPaymentTransaction(itransaction);
+                                    System.out.println("Your transaction Id is "+ paymentTransaction.getTransactionID());
                                 }
                                 else
                                 {
@@ -254,24 +211,22 @@ public class Fawry {
                         {
                             System.out.println("Enter service name ");
                             stringtoEnter= scannerStr.nextLine();
-                            Iservice iservice=  serviceDataManger.Search(stringtoEnter);
-                            if(iservice==null)
+                            if( customer.Search(stringtoEnter,serviceDataManger)  ==null)
                             {
-                                System.out.println("this service doesn't exist");
+                                System.out.println("Service doesn't exist");
                             }
-                            else {
-                                System.out.println(iservice.getName() +  " exist");
+                            else
+                            {
+                                System.out.println(stringtoEnter +" exist");
                             }
                         }
                         else if(choice==3)
                         {
                             System.out.println("Enter amount of money ");
                             double amount= scanner.nextDouble();
-                            if(customer.AddToWallet(amount) == true)
+                            if(customer.AddToWallet(amount, transactionDataManager ) )
                             {
                                 System.out.println("You added funds to walled successfully");
-                                AddtoWalltedTransaction  addtoWalltedTransaction=new AddtoWalltedTransaction(amount,customer);
-                                transactionDataManager.AddWalletTransaction(addtoWalltedTransaction);
                             }
                             else
                             {
@@ -286,15 +241,13 @@ public class Fawry {
                             System.out.println("2.Internet Payment");
                             System.out.println("3.LandLine");
                             choice=scanner.nextInt();
-                            ServiceFactory serviceFactory=new ServiceFactory();
-                            Iservice iservice= serviceFactory.makeObj(choice);
-                            if(iservice.getDiscount()==0)
+                            if(customer.checkServiceDiscount(choice) ==0)
                             {
                                 System.out.println("this service don't have discount");
                             }
                             else
                             {
-                                System.out.println("this service has "+ iservice.getDiscount()+"% discount");
+                                System.out.println("this service has "+ customer.checkServiceDiscount(choice) +"% discount");
                             }
                             System.out.println("");
 
@@ -304,7 +257,7 @@ public class Fawry {
                         {
                             System.out.println("Enter transaction Id ");
                             int id= scanner.nextInt();
-                            if(customer.RefundRequest(id , transactionDataManager) == true)
+                            if(customer.RefundRequest(id , transactionDataManager) )
                             {
                                 System.out.println("You request completed successfully");
                             }

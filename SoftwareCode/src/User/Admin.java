@@ -1,6 +1,7 @@
 package User;
 import Database.*;
 import Factories.DiscountFactory;
+import Service.Iservice;
 
 public class Admin implements IUser {
     private String username;
@@ -33,9 +34,9 @@ public class Admin implements IUser {
 
     public Admin(){};
     public Admin(String username,String email,String password){
-        SetUsername(username);
-        SetEmail(email);
-        SetPassword(password);
+        setUsername(username);
+        setEmail(email);
+        setPassword(password);
     }
     public  void HandleRefund(TransactionDataManager transactionDataManager)
     {
@@ -61,35 +62,6 @@ public class Admin implements IUser {
     }
 
 
-    @Override
-    public String GetUsername() {
-        return this.username;
-    }
-
-    @Override
-    public String GetEmail() {
-        return this.email;
-    }
-
-    @Override
-    public String GetPassword() {
-        return this.password;
-    }
-
-    @Override
-    public void SetUsername(String username) {
-        this.username=username;
-    }
-
-    @Override
-    public void SetEmail(String email) {
-        this.email=email;
-    }
-
-    @Override
-    public void SetPassword(String password) {
-        this.password=password;
-    }
 
 
 }
