@@ -13,9 +13,9 @@ public class AdminController {
     {
         admin.HandleRefund(id, state,transactionDataManager);
     }
-    public void MakeDiscount(double discountAmount ,CustomerDataManager customerDataManager ,int choice )
+    public void MakeDiscount(double discountAmount ,CustomerDataManager customerDataManager ,int discountChoice, int serviceChoice )
     {
-        admin.MakeDiscount(discountAmount,customerDataManager,choice);
+        admin.MakeDiscount(discountAmount,customerDataManager,discountChoice,serviceChoice);
     }
 
     public ArrayList<PaymentTransaction> ListPaymentTransactions(TransactionDataManager transactionDataManager)

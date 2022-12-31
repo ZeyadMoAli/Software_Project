@@ -72,10 +72,12 @@ public class Customer implements IUser {
     {
         ServiceFactory serviceFactory=new ServiceFactory();
         Iservice iservice= serviceFactory.makeObj(serviceChoice);
+
         IserviceProviderFactory serviceProviderFactory = new ServiceProviderFactory();
         IserviceProvider iserviceProvider = serviceProviderFactory.makeObj(serviceProviderChoice);
-        //iserviceProvider.FillForm(this.getUsername());
+
         PaymentTransaction itransaction =new PaymentTransaction(this, iservice,iserviceProvider,amount,iservice.getDiscount()+ this.getDiscount());
+
         if(Pay(itransaction.getNetAmount(), iserviceProvider, paymentChoice ))
         {
             transactionDataManager.AddtoPaymentTransaction(itransaction);

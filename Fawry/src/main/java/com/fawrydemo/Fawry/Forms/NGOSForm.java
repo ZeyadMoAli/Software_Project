@@ -10,12 +10,6 @@ public class NGOSForm implements Iform{
 
     public void Fill()
     {
-        Scanner obj = new Scanner(System.in);
-        System.out.println("Enter your phone number");
-        phonenum=obj.nextLine();
-
-        System.out.println("Enter NGO name");
-        NGOName=obj.nextLine();
 
     }
     public void setPhoneNum(String phonenum) {

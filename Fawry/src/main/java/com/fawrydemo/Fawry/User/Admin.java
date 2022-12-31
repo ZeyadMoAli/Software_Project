@@ -1,6 +1,7 @@
 package com.fawrydemo.Fawry.User;
 import com.fawrydemo.Fawry.Database.*;
 import com.fawrydemo.Fawry.Factories.*;
+import com.fawrydemo.Fawry.Service.Iservice;
 import com.fawrydemo.Fawry.Transactions.AddtoWalltedTransaction;
 import com.fawrydemo.Fawry.Transactions.PaymentTransaction;
 
@@ -46,10 +47,16 @@ public class Admin implements IUser {
         transactionDataManager.HandelRefund(id, state);
 
     }
-    public void MakeDiscount(double discountAmount ,CustomerDataManager customerDataManager ,int choice )
+    public void MakeDiscount(double discountAmount ,CustomerDataManager customerDataManager ,int discountChoice, int serviceChoice )
     {
         DiscountFactory discountFactory =new DiscountFactory();
-        discountFactory.MakeObj(choice,discountAmount,customerDataManager);
+        if(discountChoice ==1 )
+        {
+
+            discountFactory.MakeObj(discountChoice,discountAmount,customerDataManager,0);
+        }
+        else
+            discountFactory.MakeObj(discountChoice,discountAmount,customerDataManager,serviceChoice);
     }
     public ArrayList<PaymentTransaction>  ListPaymentTransactions(TransactionDataManager transactionDataManager)
     {

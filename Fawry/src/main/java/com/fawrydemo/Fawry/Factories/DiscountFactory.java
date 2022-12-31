@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class DiscountFactory implements IDiscountFactory{
 
     @Override
-    public Idiscount MakeObj( int choice , double amount, CustomerDataManager customerDataManager) {
+    public Idiscount MakeObj( int choice , double amount, CustomerDataManager customerDataManager, int serviceChoice) {
         if(choice==1 )
         {
             OverAllDiscount overAllDiscount= new OverAllDiscount(customerDataManager, amount);
@@ -17,7 +17,11 @@ public class DiscountFactory implements IDiscountFactory{
         else if (choice ==2)
         {
             ServiceFactory serviceFactory=new ServiceFactory();
+            Iservice iservice = serviceFactory.makeObj(serviceChoice);
+            SpecificDiscount specificDiscount =new SpecificDiscount(iservice, amount);
+            return specificDiscount;
+
         }
-        return null;
+        return  null;
     }
 }

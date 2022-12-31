@@ -10,9 +10,6 @@ public class WeForm implements Iform {
 
     public void Fill()
     {
-        Scanner obj = new Scanner(System.in);
-        System.out.println("Enter your phone number");
-        phonenum=obj.nextLine();
 
     }
 

@@ -9,11 +9,6 @@ public class SchoolsForm implements Iform {
     private String schoolname="";
     public void Fill()
     {
-        Scanner obj = new Scanner(System.in);
-        System.out.println("Enter your phone number");
-        phonenum=obj.nextLine();
-        System.out.println("Enter the amount you want to pay");
-        schoolname=obj.nextLine();
     }
 
     public void setPhoneNum(String phonenum) {

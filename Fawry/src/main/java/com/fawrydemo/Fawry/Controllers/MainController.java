@@ -34,12 +34,12 @@ public class MainController {
     {
         return adminController.ListAddtoWalletTransactions(transactionDataManager);
     }
-//    @PostMapping(value = "/Admin/MakeDiscount/{discount}/{choice}/{discount}")
-//    public ResponseEntity<Void> MakeDiscount(@PathVariable ("discount") double discountAmount ,@PathVariable ("choice") int choice )
-//    {
-//        adminController.MakeDiscount(discountAmount,customerDataManager,choice);
-//        return ResponseEntity.status(HttpStatus.OK).build();
-//    }
+    @PostMapping(value = "/Admin/MakeDiscount")
+    public ResponseEntity<Void> MakeDiscount(@RequestParam (value ="discount") double discountAmount ,@RequestParam (value ="discountChoice") int discountChoice,@RequestParam(value = "serviceChoice") int serviceChoice )
+    {
+        adminController.MakeDiscount(discountAmount,customerDataManager,discountChoice,serviceChoice);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
     @PostMapping(value = "Customer/SignUp")
     public ResponseEntity<Void> SignUp(@RequestBody Customer customer) {
         if(customerController.SignUp(customer,customerDataManager) == null)
@@ -55,8 +55,8 @@ public class MainController {
     }
 
 
-    @GetMapping(value = "/Customer/SearchService/{service}")
-    public ResponseEntity<Void> SearchService(@RequestBody Customer customer, @PathVariable ("service") String serviceName)
+    @GetMapping(value = "/Customer/SearchService")
+    public ResponseEntity<Void> SearchService(@RequestBody Customer customer,  @RequestParam ( value ="service") String serviceName)
     {
         if(customerController.SearchService(customer,serviceName, serviceDataManger) == null)
         {
@@ -64,8 +64,8 @@ public class MainController {
         }
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-    @PostMapping(value = "/Customer/RefundRequest/{id}")
-    public ResponseEntity<Void> RefundRequest(@RequestBody Customer customer , @PathVariable("id") int id) {
+    @PostMapping(value = "/Customer/RefundRequest")
+    public ResponseEntity<Void> RefundRequest(@RequestBody Customer customer , @RequestParam(value ="id") int id) {
         if(customerController.RefundRequest(customer,id,transactionDataManager))
         {
             return ResponseEntity.status(HttpStatus.OK).build();
@@ -73,8 +73,8 @@ public class MainController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @PostMapping(value = "/Customer/AddToWallet/{amount}")
-    public ResponseEntity<Void> AddToWallet(@RequestBody Customer customer,  @PathVariable("amount") double balance)
+    @PostMapping(value = "/Customer/AddToWallet")
+    public ResponseEntity<Void> AddToWallet(@RequestBody Customer customer,  @RequestParam(value ="amount") double balance)
     {
         if(customerController.AddToWallet(customer,balance,transactionDataManager))
         {
@@ -83,20 +83,20 @@ public class MainController {
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
     }
 
-    @GetMapping(value = "/Customer/checkServiceDiscount/{choice}")
-    public double checkServiceDiscount(@RequestBody Customer customer ,@PathVariable("choice") int choice)
+    @GetMapping(value = "/Customer/checkServiceDiscount")
+    public double checkServiceDiscount(@RequestBody Customer customer ,@RequestParam(value ="choice") int choice)
     {
         return customerController.checkServiceDiscount(customer,choice);
     }
 
-    @PostMapping(value = "/Customer/makeService/{serviceChoice} /{serviceProviderChoice}/ {paymentChoice}/{amount}")
-    public PaymentTransaction makeService(@RequestBody Customer customer,@PathVariable("serviceChoice") int serviceChoice, @PathVariable("serviceProviderChoice") int serviceProviderChoice,@PathVariable("paymentChoice") int paymentChoice, @PathVariable("amount") double amount)
+    @PostMapping(value = "/Customer/makeService")
+    public PaymentTransaction makeService(@RequestBody Customer customer,@RequestParam(value ="serviceChoice") int serviceChoice, @RequestParam(value ="serviceProviderChoice") int serviceProviderChoice,@RequestParam(value ="paymentChoice") int paymentChoice, @RequestParam(value ="amount") double amount)
     {
         return customerController.makeService(customer,serviceChoice,serviceProviderChoice,paymentChoice,amount,transactionDataManager);
     }
 
-    @PostMapping(value = "/Admin/HandleRefund/{id}/{state}")
-    public  void HandleRefund(@PathVariable("id") int id,@PathVariable("state") boolean state)
+    @PostMapping(value = "/Admin/HandleRefund")
+    public  void HandleRefund(@RequestParam(value ="id") int id,@RequestParam(value ="state") boolean state)
     {
         adminController.HandleRefund(id, state,transactionDataManager);
     }

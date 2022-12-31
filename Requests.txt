@@ -1,0 +1,53 @@
+Admin:
+
+
+discount: post
+http://localhost:8080/Admin/MakeDiscount?discount=10&discountChoice=1&serviceChoice=0
+
+listPaymentTransactions: get
+http://localhost:8080/Admin/ListPaymentTransactions
+
+listWalletTransactions: get
+http://localhost:8080/Admin/ListAddtoWalletTransactions
+
+listRefundTransactions: get
+http://localhost:8080/Admin/ListRefundTransactions
+
+
+HandleTransaction: post
+http://localhost:8080/Admin/HandleRefund?id&state= false
+
+---------------------------------------------------------------------------------
+Customer:
+
+signin: post
+http://localhost:8080/Customer/Signin
+
+
+signup: post
+http://localhost:8080/Customer/SignUp
+
+
+
+checkServiceDiscount: get
+http://localhost:8080/Customer/checkServiceDiscount?choice=1
+
+
+makeService: post
+http://localhost:8080/Customer/makeService?serviceChoice=1&serviceProviderChoice=1&paymentChoice=1&amount=100
+
+
+AddToWallet: post
+http://localhost:8080/Customer/AddToWallet?amount=100
+
+
+RefundRequest: post
+http://localhost:8080/Customer/RefundRequest?id=1
+
+
+SearchService: get
+http://localhost:8080/Customer/SearchService?service=Landline
+
+
+
+
