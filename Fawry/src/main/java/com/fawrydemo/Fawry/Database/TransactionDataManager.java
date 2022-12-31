@@ -25,6 +25,8 @@ public class TransactionDataManager implements IdataManger {
     }
     public void RemoveFromPaymentTransaction(PaymentTransaction transaction) {
         paymentTransactions.remove(transaction);}
+
+
     public void Addtorefund(PaymentTransaction transaction)
     {
         Refund.add(transaction);
@@ -40,6 +42,15 @@ public class TransactionDataManager implements IdataManger {
         this.Addtorefund(transaction);
 
     }
+    public PaymentTransaction getRefundTransaction(int id)
+    {
+        for(PaymentTransaction paymentTransaction : Refund)
+        {
+            if(paymentTransaction.getTransactionID() == id)
+                return paymentTransaction;
+        }
+        return null;
+    }
     public ArrayList<AddtoWalltedTransaction> ListAddtoWalledTransactions ()
     {
         return WalletTransaction;
@@ -53,37 +64,20 @@ public class TransactionDataManager implements IdataManger {
     {
         return paymentTransactions;
     }
-    public void HandelRefund(){
-
-        boolean state=false;
-        Scanner scn = new Scanner(System.in);
-
-        for (PaymentTransaction transaction : Refund){
-            System.out.println("Transaction ID: "+  transaction.getTransactionID() );
-            System.out.println("Customer Username: "+ transaction.getCustomerName());
-            System.out.println("Service"+ transaction.getIservice().getName());
-            System.out.println("Amount to be Refunded "+ transaction.getNetAmount());
-            System.out.println("Enter State (true = Accepted, false = Rejected) :");
-            state=scn.nextBoolean();
-            transaction.setRefundStates(state);
-            if(state==true)
-            {
-                transaction.getCustomer().AddToWallet(transaction.getNetAmount(),this);
-            }
-            else
-            {
-                temp.add(transaction);
-            }
-            System.out.println(" ");
-
-        }
-
-        for(PaymentTransaction tran : temp)
+    public Itransaction HandelRefund(int id , boolean state){
+        PaymentTransaction itransaction = getRefundTransaction(id);
+        itransaction.setRefundStates(state);
+        if(state)
         {
-            paymentTransactions.add(tran);
+            itransaction.getCustomer().AddToWallet(itransaction.getNetAmount(),this);
         }
-        Refund.clear();
+        else
+        {
 
+            AddtoPaymentTransaction(itransaction);
+        }
+        RemoveFromRefund(itransaction);
+        return itransaction;
     }
 
 

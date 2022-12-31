@@ -68,15 +68,15 @@ public class Customer implements IUser {
         Iservice iservice= serviceFactory.makeObj(choice);
         return iservice.getDiscount();
     }
-    public PaymentTransaction makeService(int serviceChoice,int serviceProviderChoice, double amount, TransactionDataManager transactionDataManager)
+    public PaymentTransaction makeService(int serviceChoice,int serviceProviderChoice, int paymentChoice, double amount, TransactionDataManager transactionDataManager)
     {
         ServiceFactory serviceFactory=new ServiceFactory();
         Iservice iservice= serviceFactory.makeObj(serviceChoice);
         IserviceProviderFactory serviceProviderFactory = new ServiceProviderFactory();
         IserviceProvider iserviceProvider = serviceProviderFactory.makeObj(serviceProviderChoice);
-        iserviceProvider.FillForm(this.getUsername());
+        //iserviceProvider.FillForm(this.getUsername());
         PaymentTransaction itransaction =new PaymentTransaction(this, iservice,iserviceProvider,amount,iservice.getDiscount()+ this.getDiscount());
-        if(Pay(itransaction.getNetAmount(), iserviceProvider ))
+        if(Pay(itransaction.getNetAmount(), iserviceProvider, paymentChoice ))
         {
             transactionDataManager.AddtoPaymentTransaction(itransaction);
             return itransaction;
@@ -105,45 +105,19 @@ public class Customer implements IUser {
         return customerDataManager.FindCustomer(this);
 
     }
-    public Iservice Search(String serviceName, ServiceDataManger serviceDataManger)
+    public Iservice SearchService(String serviceName, ServiceDataManger serviceDataManger)
     {
         return serviceDataManger.Search(serviceName);
     }
 
-    public  boolean Pay(double amount, IserviceProvider iserviceProvider)
+    public  boolean Pay(double amount, IserviceProvider iserviceProvider, int paymentChoice)
     {
-        int  choice;
-        Scanner scn=new Scanner(System.in);
-        if (iserviceProvider.CashState())
-        {
-            System.out.println("Enter The number of your choice");
-            System.out.println("1.Credit Card");
-            System.out.println("2.Wallet");
-            System.out.println("3.Cash");
-            choice= scn.nextInt();
-            if(choice==1)
-            {
-                return craditCard.pay(amount);
-            }else if(choice==2)
-            {
-               return wallet.pay(amount);
-            }
-            else
-                return true;
-        }
-        else {
-            System.out.println("Enter The number of your choice");
-            System.out.println("1.Credit Card");
-            System.out.println("2.Wallet");
-            choice= scn.nextInt();
-            if(choice==1)
-            {
-                return craditCard.pay(amount);
-            }else if(choice==2)
-            {
-                return wallet.pay(amount);
-            }
-        }
+        if(paymentChoice==1)
+            return craditCard.pay(amount);
+        else if(paymentChoice==2)
+            return wallet.pay(amount);
+        else if(paymentChoice ==3 && iserviceProvider.CashState())
+            return true;
         return false;
     }
 

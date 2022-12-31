@@ -41,9 +41,9 @@ public class Admin implements IUser {
         setEmail(email);
         setPassword(password);
     }
-    public  void HandleRefund(TransactionDataManager transactionDataManager)
+    public  void HandleRefund(int id, boolean state, TransactionDataManager transactionDataManager)
     {
-        transactionDataManager.HandelRefund();
+        transactionDataManager.HandelRefund(id, state);
 
     }
     public void MakeDiscount(double discountAmount ,CustomerDataManager customerDataManager ,int choice )

@@ -16,17 +16,7 @@ public class DiscountFactory implements IDiscountFactory{
         }
         else if (choice ==2)
         {
-            Scanner scanner= new Scanner(System.in);
-            System.out.println("Enter The number of your choice");
-            System.out.println("1.Mobile Recharge ");
-            System.out.println("2.Internet Payment");
-            System.out.println("3.LandLine");
-            System.out.println("4.Donation");
-            int choice2=scanner.nextInt();
             ServiceFactory serviceFactory=new ServiceFactory();
-            Iservice iservice= serviceFactory.makeObj(choice2);
-            SpecificDiscount specificDiscount =new SpecificDiscount( iservice,amount);
-            return specificDiscount;
         }
         return null;
     }

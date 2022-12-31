@@ -22,9 +22,9 @@ public class CustomerController {
     {
         return customer.checkServiceDiscount(choice);
     }
-    public PaymentTransaction makeService(Customer customer,int serviceChoice, int serviceProviderChoice, double amount, TransactionDataManager transactionDataManager)
+    public PaymentTransaction makeService(Customer customer,int serviceChoice, int serviceProviderChoice, int paymentChoice,double amount, TransactionDataManager transactionDataManager)
     {
-        return customer.makeService(serviceChoice,serviceProviderChoice,amount,transactionDataManager);
+        return customer.makeService(serviceChoice,serviceProviderChoice, paymentChoice, amount,transactionDataManager);
     }
 
     public Customer SignUp(Customer customer, CustomerDataManager customerDataManager) {
@@ -33,13 +33,13 @@ public class CustomerController {
     public boolean AddToWallet(Customer customer,  double balance,  TransactionDataManager transactionDataManager) {
         return customer.AddToWallet(balance, transactionDataManager);
     }
-    Iservice Search(Customer customer, String s, ServiceDataManger serviceDataManger)
+    Iservice SearchService(Customer customer, String serviceName, ServiceDataManger serviceDataManger)
     {
-        return customer.Search(s,serviceDataManger);
+        return customer.SearchService( serviceName,serviceDataManger);
     }
-    public  boolean Pay(Customer customer, double amount, IserviceProvider iserviceProvider)
+    public  boolean Pay(Customer customer, double amount, IserviceProvider iserviceProvider, int paymentChoice)
     {
-        return customer.Pay(amount,iserviceProvider);
+        return customer.Pay(amount,iserviceProvider, paymentChoice);
     }
 
     public Boolean RefundRequest(Customer customer, int id, TransactionDataManager transactionDataManager) {

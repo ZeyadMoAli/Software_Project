@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class AdminController {
     Admin admin = new Admin();
-    public  void HandleRefund(TransactionDataManager transactionDataManager)
+    public  void HandleRefund(int id, boolean state, TransactionDataManager transactionDataManager)
     {
-        admin.HandleRefund(transactionDataManager);
+        admin.HandleRefund(id, state,transactionDataManager);
     }
     public void MakeDiscount(double discountAmount ,CustomerDataManager customerDataManager ,int choice )
     {
