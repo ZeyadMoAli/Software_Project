@@ -48,9 +48,6 @@ public class Customer implements IUser {
         discount = discount_amount;
     }
     public Customer() {}
-
-
-
     public Customer(String username, String email, String password) {
         setUsername(username);
         setEmail(email);

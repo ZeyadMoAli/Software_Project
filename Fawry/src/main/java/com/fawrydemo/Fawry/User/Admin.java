@@ -1,7 +1,10 @@
 package com.fawrydemo.Fawry.User;
 import com.fawrydemo.Fawry.Database.*;
 import com.fawrydemo.Fawry.Factories.*;
-import com.fawrydemo.Fawry.Service.*;
+import com.fawrydemo.Fawry.Transactions.AddtoWalltedTransaction;
+import com.fawrydemo.Fawry.Transactions.PaymentTransaction;
+
+import java.util.ArrayList;
 
 public class Admin implements IUser {
     private String username;
@@ -48,17 +51,18 @@ public class Admin implements IUser {
         DiscountFactory discountFactory =new DiscountFactory();
         discountFactory.MakeObj(choice,discountAmount,customerDataManager);
     }
-    public void ListPaymentTransactions(TransactionDataManager transactionDataManager)
+    public ArrayList<PaymentTransaction>  ListPaymentTransactions(TransactionDataManager transactionDataManager)
     {
-        transactionDataManager.ListPaymentTransactions();
+        return transactionDataManager.ListPaymentTransactions();
     }
-    public void ListRefundTransactions(TransactionDataManager transactionDataManager)
+    public ArrayList<PaymentTransaction> ListRefundTransactions(TransactionDataManager transactionDataManager)
     {
-        transactionDataManager.ListRefundTransactions();
+        return transactionDataManager.ListRefundTransactions();
     }
-    public void ListAddtoWalletTransactions(TransactionDataManager transactionDataManager)
+    public ArrayList<AddtoWalltedTransaction> ListAddtoWalletTransactions(TransactionDataManager transactionDataManager)
     {
-        transactionDataManager.ListAddtoWalledTransactions();
+        return transactionDataManager.ListAddtoWalledTransactions();
+
     }
 
 

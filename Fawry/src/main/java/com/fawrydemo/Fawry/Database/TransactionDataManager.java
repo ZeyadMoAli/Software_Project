@@ -40,54 +40,18 @@ public class TransactionDataManager implements IdataManger {
         this.Addtorefund(transaction);
 
     }
-    public void ListAddtoWalledTransactions ()
+    public ArrayList<AddtoWalltedTransaction> ListAddtoWalledTransactions ()
     {
-        if(WalletTransaction.isEmpty())
-        {
-            System.out.println("There aren't any Add to wallet transactions");
-            return;
-        }
-        for (AddtoWalltedTransaction transaction: WalletTransaction)
-        {
-            System.out.println("Transaction ID: "+  transaction.getTransactionID() );
-            System.out.println("Customer Username: "+ transaction.getCustomerName());
-            System.out.println("Netamount: "+transaction.getAmount());
-            System.out.println(" ");
-        }
+        return WalletTransaction;
     }
-    public void ListRefundTransactions()
+    public ArrayList<PaymentTransaction> ListRefundTransactions()
     {
-        if(Refund.isEmpty())
-        {
-            System.out.println("There aren't any refund transactions");
-            return;
-        }
-        for (PaymentTransaction transaction: Refund)
-        {
-            System.out.println("Transaction ID: "+  transaction.getTransactionID() );
-            System.out.println("Customer Username: "+ transaction.getCustomerName());
-            System.out.println("Netamount: "+transaction.getNetAmount());
-            System.out.println("Discount: "+transaction.getDiscount());
-            System.out.println(" ");
-        }
+        return Refund;
     }
 
-    public void ListPaymentTransactions()
+    public  ArrayList<PaymentTransaction> ListPaymentTransactions()
     {
-        if(paymentTransactions.isEmpty())
-        {
-            System.out.println("There aren't any Payment transactions");
-            return;
-        }
-        for (PaymentTransaction transaction: paymentTransactions)
-        {
-            System.out.println("Transaction ID: "+  transaction.getTransactionID() );
-            System.out.println("Customer Username: "+ transaction.getCustomerName());
-            System.out.println("Netamount: "+transaction.getNetAmount());
-
-            System.out.println("Discount: "+transaction.getDiscount());
-            System.out.println(" ");
-        }
+        return paymentTransactions;
     }
     public void HandelRefund(){
 

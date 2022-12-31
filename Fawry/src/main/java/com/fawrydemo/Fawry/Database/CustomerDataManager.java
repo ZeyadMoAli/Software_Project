@@ -5,6 +5,10 @@ import java.util.*;
 
 public class CustomerDataManager implements IdataManger{
     public ArrayList<Customer> customers= new ArrayList<Customer>();
+    public CustomerDataManager()
+    {
+        addCustomer(new Customer("zeyad","gmail", "123"));
+    }
     public void addCustomer(Customer customer)
     {
         customers.add(customer);

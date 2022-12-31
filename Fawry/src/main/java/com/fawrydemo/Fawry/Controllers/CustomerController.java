@@ -8,21 +8,15 @@ import com.fawrydemo.Fawry.ServiceProvider.*;
 import com.fawrydemo.Fawry.Transactions.*;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+
 public class CustomerController {
     Customer customer1;
     CustomerController()
     {
         customer1 = new Customer();
     }
-@RequestMapping(value = "/firstApi", method = RequestMethod.POST)
-    public String firstApi ( @RequestBody Customer customer)
-    {
-        return customer.getPassword();
-    }
     public Customer SignIn(Customer customer, CustomerDataManager customerDataManager) {
         return customer.SignIn(customerDataManager);
-
     }
     public double checkServiceDiscount(Customer customer ,int choice)
     {

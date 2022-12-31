@@ -1,54 +1,59 @@
 package com.fawrydemo.Fawry.Controllers;
 
 import com.fawrydemo.Fawry.Database.*;
+import com.fawrydemo.Fawry.Transactions.AddtoWalltedTransaction;
+import com.fawrydemo.Fawry.Transactions.PaymentTransaction;
 import com.fawrydemo.Fawry.User.Admin;
 
+import java.util.ArrayList;
+
 public class AdminController {
-    public  void HandleRefund(Admin admin, TransactionDataManager transactionDataManager)
+    Admin admin = new Admin();
+    public  void HandleRefund(TransactionDataManager transactionDataManager)
     {
         admin.HandleRefund(transactionDataManager);
     }
-    public void MakeDiscount(Admin admin,double discountAmount ,CustomerDataManager customerDataManager ,int choice )
+    public void MakeDiscount(double discountAmount ,CustomerDataManager customerDataManager ,int choice )
     {
         admin.MakeDiscount(discountAmount,customerDataManager,choice);
     }
 
-    public void ListPaymentTransactions(Admin admin,TransactionDataManager transactionDataManager)
+    public ArrayList<PaymentTransaction> ListPaymentTransactions(TransactionDataManager transactionDataManager)
     {
-        admin.ListPaymentTransactions(transactionDataManager);
+       return admin.ListPaymentTransactions(transactionDataManager);
     }
 
-    public void ListRefundTransactions(Admin admin,TransactionDataManager transactionDataManager)
+    public ArrayList<PaymentTransaction> ListRefundTransactions(TransactionDataManager transactionDataManager)
     {
-        admin.ListRefundTransactions(transactionDataManager);
+        return admin.ListRefundTransactions(transactionDataManager);
     }
-    public void ListAddtoWalletTransactions(Admin admin,TransactionDataManager transactionDataManager)
+    public ArrayList<AddtoWalltedTransaction> ListAddtoWalletTransactions(TransactionDataManager transactionDataManager)
     {
-        admin.ListAddtoWalletTransactions(transactionDataManager);
+        return admin.ListAddtoWalletTransactions(transactionDataManager);
     }
 
 
-    public String getAdminname(Admin admin) {
+    public String getAdminname() {
         return admin.getUsername();
     }
 
-    public void setAdminname(Admin admin,String username) {
+    public void setAdminname(String username) {
         admin.setUsername(username);
     }
 
-    public String getEmail(Admin admin) {
+    public String getEmail() {
         return admin.getEmail();
     }
 
-    public void setEmail(Admin admin,String email) {
+    public void setEmail(String email) {
         admin.setEmail(email);
     }
 
-    public String getPassword(Admin admin) {
+    public String getPassword() {
         return admin.getPassword();
     }
 
-    public void setPassword(Admin admin,String password) {
+    public void setPassword(String password) {
         admin.setPassword(password);
     }
 }
