@@ -2,6 +2,7 @@ package com.fawrydemo.Fawry.Controllers;
 import com.fawrydemo.Fawry.Database.*;
 import com.fawrydemo.Fawry.Service.Iservice;
 import com.fawrydemo.Fawry.Transactions.AddtoWalltedTransaction;
+import com.fawrydemo.Fawry.Transactions.Itransaction;
 import com.fawrydemo.Fawry.Transactions.PaymentTransaction;
 import com.fawrydemo.Fawry.User.Customer;
 import org.springframework.http.HttpStatus;
@@ -90,9 +91,10 @@ public class MainController {
     }
 
     @PostMapping(value = "/Customer/makeService")
-    public PaymentTransaction makeService(@RequestBody Customer customer,@RequestParam(value ="serviceChoice") int serviceChoice, @RequestParam(value ="serviceProviderChoice") int serviceProviderChoice,@RequestParam(value ="paymentChoice") int paymentChoice, @RequestParam(value ="amount") double amount)
+    public PaymentTransaction makeService(@RequestBody Customer customer,@RequestParam(value ="serviceChoice") int serviceChoice,@RequestParam(value = "receiptChoice") int receiptChoice,@RequestParam(value ="serviceProviderChoice") int serviceProviderChoice,@RequestParam(value ="paymentChoice") int paymentChoice, @RequestParam(value ="amount") double amount)
     {
-        return customerController.makeService(customer,serviceChoice,serviceProviderChoice,paymentChoice,amount,transactionDataManager);
+        return customerController.makeService(customer,serviceChoice,serviceProviderChoice,paymentChoice,amount,receiptChoice,transactionDataManager);
+
     }
 
     @PostMapping(value = "/Admin/HandleRefund")

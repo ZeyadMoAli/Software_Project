@@ -5,7 +5,7 @@ import com.fawrydemo.Fawry.Service.*;
 public class ServiceFactory implements IServiceFactory{
 
     @Override
-    public   Iservice makeObj(int choice) {
+    public   Iservice makeObj(int choice, int receiptChoice) {
 
         if(choice==1)
         {
@@ -19,7 +19,7 @@ public class ServiceFactory implements IServiceFactory{
         }
         else if(choice==3)
         {
-            LandLine landLine =new LandLine();
+            LandLine landLine =new LandLine(receiptChoice);
             return landLine;
         }
         else if(choice==4) {

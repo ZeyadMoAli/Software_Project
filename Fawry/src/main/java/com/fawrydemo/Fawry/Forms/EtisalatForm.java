@@ -3,8 +3,8 @@ package com.fawrydemo.Fawry.Forms;
 import java.util.Scanner;
 
 public class EtisalatForm implements Iform{
-    private String name;
-    private String phonenum;
+    private String name= null;
+    private String phonenum= null;
 
 
     public void Fill()

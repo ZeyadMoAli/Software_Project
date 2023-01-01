@@ -15,7 +15,7 @@ http://localhost:8080/Admin/ListRefundTransactions
 
 
 HandleTransaction: post
-http://localhost:8080/Admin/HandleRefund?id&state= false
+http://localhost:8080/Admin/HandleRefund?id=1&state= false
 
 ---------------------------------------------------------------------------------
 Customer:
@@ -34,7 +34,7 @@ http://localhost:8080/Customer/checkServiceDiscount?choice=1
 
 
 makeService: post
-http://localhost:8080/Customer/makeService?serviceChoice=1&serviceProviderChoice=1&paymentChoice=1&amount=100
+http://localhost:8080/Customer/makeService?serviceChoice=1&receiptChoice=1&serviceProviderChoice=1&paymentChoice=1&amount=100
 
 
 AddToWallet: post

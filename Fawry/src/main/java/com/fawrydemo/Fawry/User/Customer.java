@@ -5,7 +5,6 @@ import com.fawrydemo.Fawry.Service.*;
 import com.fawrydemo.Fawry.ServiceProvider.*;
 import com.fawrydemo.Fawry.Transactions.*;
 import com.fawrydemo.Fawry.PaymentOptions.*;
-import java.util.*;
 
 public class Customer implements IUser {
     private String username;
@@ -65,19 +64,28 @@ public class Customer implements IUser {
     public double checkServiceDiscount(int choice)
     {
         ServiceFactory serviceFactory=new ServiceFactory();
-        Iservice iservice= serviceFactory.makeObj(choice);
+        Iservice iservice= serviceFactory.makeObj(choice,1);
         return iservice.getDiscount();
     }
-    public PaymentTransaction makeService(int serviceChoice,int serviceProviderChoice, int paymentChoice, double amount, TransactionDataManager transactionDataManager)
+    public PaymentTransaction makeService(int serviceChoice,int serviceProviderChoice, int paymentChoice, double amount, int receiptChoice, TransactionDataManager transactionDataManager)
     {
         ServiceFactory serviceFactory=new ServiceFactory();
-        Iservice iservice= serviceFactory.makeObj(serviceChoice);
+        Iservice iservice= serviceFactory.makeObj(serviceChoice,receiptChoice);
+        PaymentTransaction itransaction ;
 
-        IserviceProviderFactory serviceProviderFactory = new ServiceProviderFactory();
-        IserviceProvider iserviceProvider = serviceProviderFactory.makeObj(serviceProviderChoice);
+        IserviceProvider iserviceProvider= null;
 
-        PaymentTransaction itransaction =new PaymentTransaction(this, iservice,iserviceProvider,amount,iservice.getDiscount()+ this.getDiscount());
-
+        if(serviceChoice==1 || serviceChoice ==2)
+        {
+            MobileAndInternetServiceProviderFactory mobileAndInternetServiceProviderFactory= new MobileAndInternetServiceProviderFactory();
+            iserviceProvider = mobileAndInternetServiceProviderFactory.makeObj(serviceProviderChoice);
+        }
+        else if(serviceChoice==4)
+        {
+            DonationFactory donationFactory=new DonationFactory();
+            iserviceProvider = donationFactory.makeObj(serviceProviderChoice);
+        }
+        itransaction =new PaymentTransaction(this, iservice,iserviceProvider,amount,iservice.getDiscount()+ this.getDiscount());
         if(Pay(itransaction.getNetAmount(), iserviceProvider, paymentChoice ))
         {
             transactionDataManager.AddtoPaymentTransaction(itransaction);
@@ -118,8 +126,15 @@ public class Customer implements IUser {
             return craditCard.pay(amount);
         else if(paymentChoice==2)
             return wallet.pay(amount);
-        else if(paymentChoice ==3 && iserviceProvider.CashState())
-            return true;
+        else if(paymentChoice ==3 )
+        {
+            if(iserviceProvider ==null || iserviceProvider.CashState())
+            {
+                return true;
+            }
+            return false;
+        }
+
         return false;
     }
 

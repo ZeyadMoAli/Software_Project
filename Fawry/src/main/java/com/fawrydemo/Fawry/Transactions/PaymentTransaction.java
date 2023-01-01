@@ -10,10 +10,10 @@ public class PaymentTransaction implements Itransaction{
     private double discount=0;
     private double NetAmount= amount - discount;
     private static int count=0;
-    private  int  transactionID;
-    private Customer customer;
-    private Iservice iservice;
-    private IserviceProvider iserviceProvider;
+    private  int  transactionID=0;
+    private Customer customer= null;
+    private Iservice iservice= null;
+    private IserviceProvider iserviceProvider= null;
     private boolean refundStates = false;
 
 
@@ -27,6 +27,11 @@ public class PaymentTransaction implements Itransaction{
         this.amount= amount;
         this.discount=discount;
         NetAmount= amount - (amount * (discount/100));
+        if(isp ==null)
+        {
+            We we =new We();
+            iserviceProvider= we;
+        }
     }
     public PaymentTransaction()
     {

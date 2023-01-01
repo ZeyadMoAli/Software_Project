@@ -8,7 +8,7 @@ public class ServiceDataManger implements IdataManger{
     {
         Iservice iservice1= new MobileRecharge();
         Iservice iservice2= new InternetPayment();
-        Iservice iservice3 = new LandLine();
+        Iservice iservice3 = new LandLine(1);
         Iservice iservice4 = new Donations();
         Addservice(iservice1);
         Addservice(iservice2);

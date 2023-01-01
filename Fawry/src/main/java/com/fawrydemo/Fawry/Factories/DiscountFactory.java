@@ -17,7 +17,7 @@ public class DiscountFactory implements IDiscountFactory{
         else if (choice ==2)
         {
             ServiceFactory serviceFactory=new ServiceFactory();
-            Iservice iservice = serviceFactory.makeObj(serviceChoice);
+            Iservice iservice = serviceFactory.makeObj(serviceChoice,1);
             SpecificDiscount specificDiscount =new SpecificDiscount(iservice, amount);
             return specificDiscount;
 

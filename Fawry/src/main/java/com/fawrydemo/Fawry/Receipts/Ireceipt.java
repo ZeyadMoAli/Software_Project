@@ -1,7 +1,7 @@
 package com.fawrydemo.Fawry.Receipts;
 
 public interface Ireceipt {
-    double receipt=0;
-
+String name= null;
+public String getName();
 
 }

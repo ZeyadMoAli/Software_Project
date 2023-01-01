@@ -1,12 +1,10 @@
 package com.fawrydemo.Fawry.Receipts;
 
 public class MonthlyReceipt implements Ireceipt{
-    double receipt=100;
-    public double getReceip() {
-        return receipt;
-    }
+    String name="MonthlyReceipt";
 
-    public void setReceip(double receip) {
-        this.receipt = receip;
+    @Override
+    public String getName() {
+        return name;
     }
 }

@@ -1,7 +1,9 @@
 package com.fawrydemo.Fawry.ServiceProvider;
 import com.fawrydemo.Fawry.Forms.*;
+import org.springframework.boot.context.properties.source.ConfigurationPropertyName;
+
 public class Etisalat implements IserviceProvider  {
-    public EtisalatForm form;
+    EtisalatForm form;
     String name="Etisalat";
     Boolean cash=true;
     public Etisalat()

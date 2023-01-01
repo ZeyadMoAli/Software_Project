@@ -22,9 +22,9 @@ public class CustomerController {
     {
         return customer.checkServiceDiscount(choice);
     }
-    public PaymentTransaction makeService(Customer customer,int serviceChoice, int serviceProviderChoice, int paymentChoice,double amount, TransactionDataManager transactionDataManager)
+    public PaymentTransaction makeService(Customer customer,int serviceChoice, int serviceProviderChoice, int paymentChoice,double amount,int receiptChoice, TransactionDataManager transactionDataManager)
     {
-        return customer.makeService(serviceChoice,serviceProviderChoice, paymentChoice, amount,transactionDataManager);
+        return customer.makeService(serviceChoice,serviceProviderChoice, paymentChoice, amount,receiptChoice,transactionDataManager);
     }
 
     public Customer SignUp(Customer customer, CustomerDataManager customerDataManager) {
