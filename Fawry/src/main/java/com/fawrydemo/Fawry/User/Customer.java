@@ -53,13 +53,15 @@ public class Customer implements IUser {
         setPassword(password);
     }
     public boolean AddToWallet(double balance , TransactionDataManager transactionDataManager) {
+        boolean bool=false;
         if( wallet.AddBalance(craditCard, balance))
         {
             AddtoWalltedTransaction  addtoWalltedTransaction=new AddtoWalltedTransaction(balance,this);
             transactionDataManager.AddWalletTransaction(addtoWalltedTransaction);
-            return true;
+            bool=true;
+            return bool;
         }
-        return false;
+        return bool;
     }
     public double checkServiceDiscount(int choice)
     {

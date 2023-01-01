@@ -3,12 +3,14 @@ package com.fawrydemo.Fawry.PaymentOptions;
 public class Wallet  implements IpaymentOptions {
 	private double balance = 1000;
 	public boolean AddBalance (CraditCard c,double num) {
+		boolean temp=false;
 		if(c.pay(num) ==true)
 		{
 			balance+=num;
-			return true;
+			temp=true;
+			return temp;
 		}
-		return false;
+		return temp;
 	}
 	@Override
 	public Boolean pay(double amount) {
