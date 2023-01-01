@@ -141,13 +141,15 @@ public class Customer implements IUser {
         return false;
     }
 
-    public Boolean RefundRequest(int id, TransactionDataManager transactionDataManager) {
+    public boolean RefundRequest(int id, TransactionDataManager transactionDataManager) {
         PaymentTransaction transaction= transactionDataManager.transactionSearch(id);
+        boolean bool=false;
         if(transaction==null)
-            return false;
+            return bool;
         else {
             transactionDataManager.FromPaymentTransactionToRefund(transaction);
-            return true;
+            bool=true;
+            return bool;
 
         }
 
