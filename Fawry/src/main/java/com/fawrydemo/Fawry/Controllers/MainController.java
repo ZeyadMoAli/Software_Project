@@ -77,7 +77,8 @@ public class MainController {
     @PostMapping(value = "/Customer/AddToWallet")
     public ResponseEntity<Void> AddToWallet(@RequestBody Customer customer,  @RequestParam(value ="amount") double balance)
     {
-        if(customerController.AddToWallet(customer,balance,transactionDataManager, customerDataManager))
+        boolean obj=customerController.AddToWallet(customer,balance,transactionDataManager, customerDataManager);
+        if(obj)
         {
             return ResponseEntity.status(HttpStatus.OK).build();
         }
