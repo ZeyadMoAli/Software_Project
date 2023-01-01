@@ -3,6 +3,7 @@ import com.fawrydemo.Fawry.Database.*;
 import com.fawrydemo.Fawry.Factories.*;
 import com.fawrydemo.Fawry.Service.Iservice;
 import com.fawrydemo.Fawry.Transactions.AddtoWalltedTransaction;
+import com.fawrydemo.Fawry.Transactions.Itransaction;
 import com.fawrydemo.Fawry.Transactions.PaymentTransaction;
 
 import java.util.ArrayList;
@@ -42,9 +43,9 @@ public class Admin implements IUser {
         setEmail(email);
         setPassword(password);
     }
-    public  void HandleRefund(int id, boolean state, TransactionDataManager transactionDataManager)
+    public Itransaction HandleRefund(int id, boolean state, TransactionDataManager transactionDataManager)
     {
-        transactionDataManager.HandelRefund(id, state);
+        return transactionDataManager.HandelRefund(id, state);
 
     }
     public void MakeDiscount(double discountAmount ,CustomerDataManager customerDataManager ,int discountChoice, int serviceChoice )

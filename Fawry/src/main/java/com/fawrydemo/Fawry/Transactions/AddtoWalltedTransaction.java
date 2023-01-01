@@ -6,7 +6,7 @@ public class AddtoWalltedTransaction implements Itransaction{
 
     private double amount  =0;
     private boolean refundStates = false;
-    private int count=0;
+    private static int count=0;
     private  int  transactionID;
     private Customer customer;
 

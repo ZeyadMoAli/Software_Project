@@ -66,6 +66,8 @@ public class TransactionDataManager implements IdataManger {
     }
     public Itransaction HandelRefund(int id , boolean state){
         PaymentTransaction itransaction = getRefundTransaction(id);
+        if(itransaction == null)
+            return null;
         itransaction.setRefundStates(state);
         if(state)
         {

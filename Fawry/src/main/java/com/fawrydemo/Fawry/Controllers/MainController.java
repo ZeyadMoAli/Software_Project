@@ -61,7 +61,7 @@ public class MainController {
     {
         if(customerController.SearchService(customer,serviceName, serviceDataManger) == null)
         {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+           return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.status(HttpStatus.OK).build();
     }
@@ -98,9 +98,11 @@ public class MainController {
     }
 
     @PostMapping(value = "/Admin/HandleRefund")
-    public  void HandleRefund(@RequestParam(value ="id") int id,@RequestParam(value ="state") boolean state)
+    public  ResponseEntity<Void>  HandleRefund(@RequestParam(value ="id") int id,@RequestParam(value ="state") boolean state)
     {
-        adminController.HandleRefund(id, state,transactionDataManager);
+        if(adminController.HandleRefund(id, state,transactionDataManager)== null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

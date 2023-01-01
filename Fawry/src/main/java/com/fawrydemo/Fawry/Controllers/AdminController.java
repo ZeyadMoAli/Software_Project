@@ -2,6 +2,7 @@ package com.fawrydemo.Fawry.Controllers;
 
 import com.fawrydemo.Fawry.Database.*;
 import com.fawrydemo.Fawry.Transactions.AddtoWalltedTransaction;
+import com.fawrydemo.Fawry.Transactions.Itransaction;
 import com.fawrydemo.Fawry.Transactions.PaymentTransaction;
 import com.fawrydemo.Fawry.User.Admin;
 
@@ -9,9 +10,9 @@ import java.util.ArrayList;
 
 public class AdminController {
     Admin admin = new Admin();
-    public  void HandleRefund(int id, boolean state, TransactionDataManager transactionDataManager)
+    public Itransaction HandleRefund(int id, boolean state, TransactionDataManager transactionDataManager)
     {
-        admin.HandleRefund(id, state,transactionDataManager);
+        return admin.HandleRefund(id, state,transactionDataManager);
     }
     public void MakeDiscount(double discountAmount ,CustomerDataManager customerDataManager ,int discountChoice, int serviceChoice )
     {

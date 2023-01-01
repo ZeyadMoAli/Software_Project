@@ -2,28 +2,28 @@ package com.fawrydemo.Fawry.Factories;
 import com.fawrydemo.Fawry.ServiceProvider.*;
 public class MobileAndInternetServiceProviderFactory {
 
-
+    IserviceProvider iserviceProvider;
     public IserviceProvider makeObj(int choice) {
         if(choice ==1)
         {
-            We we =new We();
-            return we;
+            iserviceProvider=new We();
+            return iserviceProvider;
         }
         else if(choice ==2)
         {
-            Orange orange=new Orange();
-            return orange;
+            iserviceProvider=new Orange();
+            return iserviceProvider;
         }
         else if(choice ==3)
         {
-            Etisalat etisalat=new Etisalat();
-            return etisalat;
+            iserviceProvider=new Etisalat();
+            return iserviceProvider;
         }
 
         else if(choice ==4)
         {
-            Vodafone vodafone=new Vodafone();
-            return vodafone;
+            iserviceProvider=new Vodafone();
+            return iserviceProvider;
         }
 
         return null;
