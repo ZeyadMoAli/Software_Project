@@ -77,7 +77,7 @@ public class MainController {
     @PostMapping(value = "/Customer/AddToWallet")
     public ResponseEntity<Void> AddToWallet(@RequestBody Customer customer,  @RequestParam(value ="amount") double balance)
     {
-        if(customerController.AddToWallet(customer,balance,transactionDataManager))
+        if(customerController.AddToWallet(customer,balance,transactionDataManager, customerDataManager))
         {
             return ResponseEntity.status(HttpStatus.OK).build();
         }
@@ -93,7 +93,7 @@ public class MainController {
     @PostMapping(value = "/Customer/makeService")
     public PaymentTransaction makeService(@RequestBody Customer customer,@RequestParam(value ="serviceChoice") int serviceChoice,@RequestParam(value = "receiptChoice") int receiptChoice,@RequestParam(value ="serviceProviderChoice") int serviceProviderChoice,@RequestParam(value ="paymentChoice") int paymentChoice, @RequestParam(value ="amount") double amount)
     {
-        return customerController.makeService(customer,serviceChoice,serviceProviderChoice,paymentChoice,amount,receiptChoice,transactionDataManager);
+        return customerController.makeService(customer,serviceChoice,serviceProviderChoice,paymentChoice,amount,receiptChoice,transactionDataManager, customerDataManager);
 
     }
 

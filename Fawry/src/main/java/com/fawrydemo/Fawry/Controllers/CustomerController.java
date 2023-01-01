@@ -22,15 +22,33 @@ public class CustomerController {
     {
         return customer.checkServiceDiscount(choice);
     }
-    public PaymentTransaction makeService(Customer customer,int serviceChoice, int serviceProviderChoice, int paymentChoice,double amount,int receiptChoice, TransactionDataManager transactionDataManager)
+    public PaymentTransaction makeService(Customer customer,int serviceChoice, int serviceProviderChoice, int paymentChoice,double amount,int receiptChoice, TransactionDataManager transactionDataManager, CustomerDataManager customerDataManager)
     {
+        customer1 =SignIn(customer,customerDataManager);
+        if ( customer1 == null)
+        {
+            SignUp(customer,customerDataManager);
+        }
+        else
+        {
+            customer =customer1;
+        }
         return customer.makeService(serviceChoice,serviceProviderChoice, paymentChoice, amount,receiptChoice,transactionDataManager);
     }
 
     public Customer SignUp(Customer customer, CustomerDataManager customerDataManager) {
         return customer.SignUp(customerDataManager);
     }
-    public boolean AddToWallet(Customer customer,  double balance,  TransactionDataManager transactionDataManager) {
+    public boolean AddToWallet(Customer customer,  double balance,  TransactionDataManager transactionDataManager, CustomerDataManager customerDataManager) {
+        customer1 =SignIn(customer,customerDataManager);
+        if ( customer1 == null)
+        {
+            SignUp(customer,customerDataManager);
+        }
+        else
+        {
+            customer =customer1;
+        }
         return customer.AddToWallet(balance, transactionDataManager);
     }
     Iservice SearchService(Customer customer, String serviceName, ServiceDataManger serviceDataManger)
