@@ -6,6 +6,8 @@ java version-> java 17
 
 to run the project on eclipse-> open eclipse and import our project on it
 
+there is a Postman collection in the submetion file you can import it and ues it
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
